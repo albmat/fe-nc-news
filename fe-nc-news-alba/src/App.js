@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './Components/Header';
-import Topics from './Components/Topics';
+import NavTopics from './Components/NavTopics';
 import ListArticles from './Components/ListArticles';
 import ArticleInfo from './Components/ArticleInfo';
 import { Router } from '@reach/router';
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <Topics />
+      <NavTopics />
       <Router>
         <ListArticles path='/articles' />
         <ListArticles path='/:topic_slug' />

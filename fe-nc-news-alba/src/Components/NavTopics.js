@@ -15,7 +15,7 @@ class Topics extends React.Component {
 
   render() {
     return (
-      <div className='Topics'>
+      <nav className='NavTopics'>
         {this.state.topics.map((topic) => {
           return (
             <Link key={topic.slug} className='Link' to={`/${topic.slug}`}>
@@ -23,7 +23,7 @@ class Topics extends React.Component {
             </Link>
           );
         })}
-      </div>
+      </nav>
     );
   }
 }

@@ -11,11 +11,19 @@ export const getAllTopics = () => {
 };
 
 export const getAllArticles = (topic) => {
-  console.log(topic, 'topic');
-  return newsApi
-    .get('/articles', { params: { topic: topic } })
-    .then(({ data }) => {
-      console.log(data);
-      return data.articles;
-    });
+  return newsApi.get('/articles', { params: { topic } }).then(({ data }) => {
+    return data.articles;
+  });
+};
+
+export const getArticleById = (id) => {
+  return newsApi.get(`/articles/${id}`).then(({ data }) => {
+    return data.article;
+  });
+};
+
+export const patchArticleVotes = (id, inc_votes) => {
+  return newsApi.patch(`/articles/${id}`, { inc_votes }).then(({ data }) => {
+    return data.article;
+  });
 };
