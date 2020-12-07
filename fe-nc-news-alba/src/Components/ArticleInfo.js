@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from '../api';
+import { Link } from '@reach/router';
 
 class ArticleInfo extends React.Component {
   state = {
@@ -32,6 +33,7 @@ class ArticleInfo extends React.Component {
 
   render() {
     const {
+      article_id,
       title,
       body,
       author,
@@ -56,7 +58,9 @@ class ArticleInfo extends React.Component {
           <button onClick={() => this.updateArticleVotes(1)}>+</button>
           <button onClick={() => this.updateArticleVotes(-1)}>-</button>
           <p>{comment_count} comments</p>
-          <button>All comments</button>
+          <Link to={`/articles/${article_id}/comments`}>
+            <button>All comments</button>
+          </Link>
         </div>
       );
     }

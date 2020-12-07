@@ -16,7 +16,7 @@
   font-size: calc(10px + 2vmin);
 }
 
-.Topics {
+.NavTopics {
   display: flex;
   justify-content: space-between;
   max-width: 400px;

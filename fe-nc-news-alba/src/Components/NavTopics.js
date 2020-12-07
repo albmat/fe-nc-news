@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '@reach/router';
 import * as api from '../api';
 
-class Topics extends React.Component {
+class NavTopics extends React.Component {
   state = {
     topics: []
   };
@@ -28,4 +28,4 @@ class Topics extends React.Component {
   }
 }
 
-export default Topics;
+export default NavTopics;
