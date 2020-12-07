@@ -8,7 +8,7 @@ const CardArticle = ({ article }) => {
       <p>{article.votes} votes</p>
       <p>by {article.author}</p>
       <p>{article.comment_count} comments</p>
-      <Link to={article.article_id}>
+      <Link to={`/articles/${article.article_id}`}>
         <button>+Info</button>
       </Link>
     </div>

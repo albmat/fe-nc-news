@@ -18,7 +18,7 @@ class Topics extends React.Component {
       <div className='Topics'>
         {this.state.topics.map((topic) => {
           return (
-            <Link key={topic.slug} className='Link' to={topic.slug}>
+            <Link key={topic.slug} className='Link' to={`/${topic.slug}`}>
               {topic.slug}
             </Link>
           );
