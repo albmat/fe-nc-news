@@ -1,12 +1,13 @@
 import React from 'react';
 import CardComment from './CardComment';
-import { Link } from '@reach/router';
+import FormComment from './FormComment';
 import * as api from '../api';
 
 class ListComments extends React.Component {
   state = {
     comments: [],
-    isLoading: true
+    isLoading: true,
+    isToggleOn: true
   };
 
   componentDidMount() {
@@ -14,6 +15,24 @@ class ListComments extends React.Component {
       this.setState({ comments, isLoading: false });
     });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const newComments =
+      prevState.comments.length !== this.state.comments.length;
+    if (newComments) {
+      this.setState({
+        comments: this.state.comments,
+        isLoading: false,
+        isToggleOn: false
+      });
+    }
+  }
+
+  handleClick = () => {
+    this.setState((currState) => ({
+      isToggleOn: !currState.isToggleOn
+    }));
+  };
 
   render() {
     if (this.state.isLoading) {
@@ -25,9 +44,12 @@ class ListComments extends React.Component {
     } else {
       return (
         <div className='ListComment'>
-          <Link to={`/articles/${this.props.article_id}/comments`}>
-            <button>Post comment</button>
-          </Link>
+          {this.state.isToggleOn ? (
+            <button onClick={this.handleClick}>Post comment</button>
+          ) : (
+            <FormComment id={this.props.article_id} />
+          )}
+
           {this.state.comments.map((comment) => {
             return <CardComment key={comment.comment_id} comment={comment} />;
           })}

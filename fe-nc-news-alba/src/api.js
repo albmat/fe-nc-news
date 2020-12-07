@@ -33,3 +33,15 @@ export const getAllCommentsByArticle = (id) => {
     return data.comments;
   });
 };
+
+export const postCommentByArticle = (id, { username, body }) => {
+  return newsApi
+    .post(`/articles/${id}/comments`, {
+      username,
+      body
+    })
+    .then(({ data }) => {
+      return data.comment;
+    })
+    .catch((err) => console.log(err, 'error'));
+};
