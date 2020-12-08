@@ -30,7 +30,6 @@ class ListComments extends React.Component {
         });
       });
     }
-    // const deletedComment;
   }
 
   handleClick = () => {
@@ -51,17 +50,20 @@ class ListComments extends React.Component {
     });
   };
 
-  // deleteComment = (id) => {
-  //   api.deleteComment(id).then(() => {
-  //     this.setState((currState) => {
-  //       const newState = {
-  //         comments: [],
-  //         isLoading: false,
-  //         isToggleOn: true
-  //       };
-  //     });
-  //   });
-  // };
+  deleteComment = (id) => {
+    api.deleteComment(id).then(() => {
+      this.setState((currState) => {
+        const newState = {
+          comments: currState.comments.filter(
+            (comment) => comment.comment_id !== id
+          ),
+          isLoading: false,
+          isToggleOn: true
+        };
+        return newState;
+      });
+    });
+  };
 
   updateCommentVotes = (id, vote) => {
     api.patchCommentVotes(id, vote).then(() => {
