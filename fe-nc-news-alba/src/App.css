@@ -97,3 +97,9 @@
 .ErrorTitle {
   margin: 15px;
 }
+
+.LoadingDiv {
+  display: flex;
+  justify-content: center;
+  margin: 20%;
+}

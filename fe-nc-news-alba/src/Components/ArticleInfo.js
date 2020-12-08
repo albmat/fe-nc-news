@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from '../api';
+import Loading from './Loading';
 import { Link } from '@reach/router';
 
 class ArticleInfo extends React.Component {
@@ -42,11 +43,7 @@ class ArticleInfo extends React.Component {
       comment_count
     } = this.state.article;
     if (this.state.isLoading) {
-      return (
-        <div className='loadingDiv'>
-          <p>Article is being loaded</p>
-        </div>
-      );
+      return <Loading />;
     } else {
       return (
         <div className='ArticleInfo'>

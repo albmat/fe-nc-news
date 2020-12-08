@@ -1,6 +1,7 @@
 import React from 'react';
 import CardComment from './CardComment';
 import FormComment from './FormComment';
+import Loading from './Loading';
 import * as api from '../api';
 
 class ListComments extends React.Component {
@@ -73,11 +74,7 @@ class ListComments extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return (
-        <div className='loadingDiv'>
-          <p>Comments are being loaded</p>
-        </div>
-      );
+      return <Loading />;
     } else {
       return (
         <div className='ListComment'>

@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../api';
 import CardArticle from './CardArticle';
+import Loading from './Loading';
 
 class ListArticles extends React.Component {
   state = {
@@ -25,11 +26,7 @@ class ListArticles extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return (
-        <div className='loadingDiv'>
-          <p>Articles are being loaded</p>
-        </div>
-      );
+      return <Loading />;
     } else {
       return (
         <div className='ListArticles'>
