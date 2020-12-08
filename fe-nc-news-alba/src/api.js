@@ -51,3 +51,7 @@ export const patchCommentVotes = (id, inc_votes) => {
     return data.comment;
   });
 };
+
+export const deleteComment = (id) => {
+  return newsApi.delete(`/comments/${id}`);
+};

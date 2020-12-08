@@ -4,7 +4,7 @@ import * as api from '../api';
 class FormComment extends React.Component {
   state = {
     comment: {},
-    username: '',
+    username: 'jessjelly',
     body: ''
   };
 
@@ -23,25 +23,25 @@ class FormComment extends React.Component {
 
   render() {
     return (
-      <div className='FormComment'>
-        <form onSubmit={(event) => this.handleSubmit(event)}>
-          <input
-            type='text'
-            id='username'
-            name='username'
-            value={this.state.username}
-            placeholder='username'
-            onChange={(event) => this.handleChange(event)}
-          ></input>
-          <input
+      <div className='FormCommentDiv'>
+        <form
+          className='FormComment'
+          onSubmit={(event) => this.handleSubmit(event)}
+        >
+          <textarea
+            className='FormInput'
             type='text'
             id='body'
             name='body'
             value={this.state.body}
             placeholder='your comment'
             onChange={(event) => this.handleChange(event)}
-          ></input>
-          <button type='submit'>Post</button>
+          >
+            Enter your comment here...
+          </textarea>
+          <button className='FormButton' type='submit'>
+            Post
+          </button>
         </form>
       </div>
     );
