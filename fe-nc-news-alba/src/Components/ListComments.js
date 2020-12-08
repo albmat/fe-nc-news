@@ -16,22 +16,21 @@ class ListComments extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const newComments =
-      prevState.comments.length !== this.state.comments.length;
-    if (newComments) {
-      this.setState({
-        comments: this.state.comments,
-        isLoading: false,
-        isToggleOn: false
-      });
-    }
-  }
-
   handleClick = () => {
     this.setState((currState) => ({
       isToggleOn: !currState.isToggleOn
     }));
+  };
+
+  addComment = (newComment) => {
+    this.setState((currState) => {
+      const newState = {
+        comments: [newComment, ...currState.comments],
+        isLoading: false,
+        isToggleOn: true
+      };
+      return newState;
+    });
   };
 
   render() {
@@ -47,7 +46,10 @@ class ListComments extends React.Component {
           {this.state.isToggleOn ? (
             <button onClick={this.handleClick}>Post comment</button>
           ) : (
-            <FormComment id={this.props.article_id} />
+            <FormComment
+              id={this.props.article_id}
+              addComment={this.addComment}
+            />
           )}
 
           {this.state.comments.map((comment) => {

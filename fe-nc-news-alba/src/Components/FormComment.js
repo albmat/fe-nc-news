@@ -16,18 +16,9 @@ class FormComment extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.postComment().then(() => {
-      this.setState({ username: '', body: '' });
-      api.getAllCommentsByArticle(this.props.id);
+    api.postCommentByArticle(this.props.id, this.state).then((newComment) => {
+      this.props.addComment(newComment);
     });
-  }
-
-  postComment() {
-    return api
-      .postCommentByArticle(this.props.id, this.state)
-      .then((comment) => {
-        this.setState({ comment });
-      });
   }
 
   render() {
