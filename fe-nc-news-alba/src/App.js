@@ -5,6 +5,7 @@ import ListArticles from './Components/ListArticles';
 import ArticleInfo from './Components/ArticleInfo';
 import ListComments from './Components/ListComments';
 import NavBar from './Components/NavBar';
+import ErrorMessage from './Components/ErrorMessage';
 import { Router } from '@reach/router';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <ListArticles path='/articles' />
         <ListArticles path='/:topic_slug' />
         <ArticleInfo path='/articles/:article_id' />
+        <ErrorMessage default errorMessage='Page not found' />
       </Router>
     </div>
   );
