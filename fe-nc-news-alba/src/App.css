@@ -43,3 +43,8 @@
   margin: 1% auto;
   border: solid black 1px;
 }
+
+.NavBar {
+  text-align: right;
+  margin: 20px;
+}

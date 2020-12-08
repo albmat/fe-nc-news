@@ -4,11 +4,13 @@ import NavTopics from './Components/NavTopics';
 import ListArticles from './Components/ListArticles';
 import ArticleInfo from './Components/ArticleInfo';
 import ListComments from './Components/ListComments';
+import NavBar from './Components/NavBar';
 import { Router } from '@reach/router';
 
 function App() {
   return (
     <div className='App'>
+      <NavBar />
       <Header />
       <NavTopics />
       <Router>
