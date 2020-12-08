@@ -6,6 +6,7 @@ import * as api from '../api';
 class ListComments extends React.Component {
   state = {
     comments: [],
+    commentUpdated: false,
     isLoading: true,
     isToggleOn: true
   };
@@ -14,6 +15,21 @@ class ListComments extends React.Component {
     api.getAllCommentsByArticle(this.props.article_id).then((comments) => {
       this.setState({ comments, isLoading: false });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const commentUpdated =
+      prevState.commentUpdated !== this.state.commentUpdated;
+    if (commentUpdated) {
+      api.getAllCommentsByArticle(this.props.article_id).then((comments) => {
+        this.setState({
+          comments,
+          isLoading: false,
+          isToggleOn: true,
+          commentUpdated: false
+        });
+      });
+    }
   }
 
   handleClick = () => {
@@ -30,6 +46,14 @@ class ListComments extends React.Component {
         isToggleOn: true
       };
       return newState;
+    });
+  };
+
+  deleteComment = (id) => {};
+
+  updateCommentVotes = (id, vote) => {
+    api.patchCommentVotes(id, vote).then(() => {
+      this.setState({ commentUpdated: true });
     });
   };
 
@@ -53,7 +77,14 @@ class ListComments extends React.Component {
           )}
 
           {this.state.comments.map((comment) => {
-            return <CardComment key={comment.comment_id} comment={comment} />;
+            return (
+              <CardComment
+                key={comment.comment_id}
+                comment={comment}
+                deleteComment={this.deleteComment}
+                updateCommentVotes={this.updateCommentVotes}
+              />
+            );
           })}
         </div>
       );

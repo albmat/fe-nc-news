@@ -29,16 +29,12 @@
 }
 
 .CardArticle {
-  display: flex;
-  flex-direction: column;
   max-width: 50%;
   margin: 1% auto;
   border: solid black 1px;
 }
 
 .CardComment {
-  display: flex;
-  flex-direction: column;
   max-width: 50%;
   margin: 1% auto;
   border: solid black 1px;

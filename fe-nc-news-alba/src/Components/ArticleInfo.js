@@ -23,13 +23,13 @@ class ArticleInfo extends React.Component {
     }
   }
 
-  updateArticleVotes(vote) {
+  updateArticleVotes = (vote) => {
     api
       .patchArticleVotes(this.state.article.article_id, vote)
       .then((article) => {
         this.setState({ article, isLoading: false });
       });
-  }
+  };
 
   render() {
     const {

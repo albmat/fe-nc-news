@@ -45,3 +45,9 @@ export const postCommentByArticle = (id, { username, body }) => {
     })
     .catch((err) => console.log(err, 'error'));
 };
+
+export const patchCommentVotes = (id, inc_votes) => {
+  return newsApi.patch(`/comments/${id}`, { inc_votes }).then(({ data }) => {
+    return data.comment;
+  });
+};
