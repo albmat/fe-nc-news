@@ -1,7 +1,12 @@
 const CardComment = ({ comment, updateCommentVotes, deleteComment }) => {
   return (
     <div className='CardComment'>
-      <button onClick={() => deleteComment(comment.comment_id)}>x</button>
+      <button
+        className='ButtonDeleteComment'
+        onClick={() => deleteComment(comment.comment_id)}
+      >
+        x
+      </button>
       <p>{comment.body}</p>
       <p>{comment.votes} votes</p>
       <button onClick={() => updateCommentVotes(comment.comment_id, 1)}>

@@ -8,7 +8,12 @@
   }
 }
 
-.App-header {
+.NavBar {
+  text-align: right;
+  margin: 20px;
+}
+
+.AppHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,18 +36,26 @@
 .CardArticle {
   max-width: 50%;
   margin: 1% auto;
+  padding: 1%;
   border: solid black 1px;
+}
+
+.ArticleInfo {
+  max-width: 80%;
+  margin: 1% auto;
 }
 
 .CardComment {
   max-width: 50%;
   margin: 1% auto;
   border: solid black 1px;
+  padding: 1%;
 }
 
-.NavBar {
-  text-align: right;
-  margin: 20px;
+.ButtonDeleteComment {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 .FormCommentDiv {

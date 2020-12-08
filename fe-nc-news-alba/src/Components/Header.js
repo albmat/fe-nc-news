@@ -2,7 +2,7 @@ import { Link } from '@reach/router';
 
 const Header = () => {
   return (
-    <header className='App-header'>
+    <header className='AppHeader'>
       <Link className='Link' to='/articles'>
         <h1>
           <span className='SpanHeader'>North</span>coders News
