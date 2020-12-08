@@ -49,9 +49,20 @@
   border: solid black 1px;
 }
 
+.CountP {
+  max-width: 50%;
+  margin: 1% auto;
+  font-style: italic;
+  text-align: left;
+}
+
 .ArticleInfo {
   max-width: 80%;
   margin: 1% auto;
+}
+
+.ButtonPostComment {
+  margin: 2%;
 }
 
 .CardComment {

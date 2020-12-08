@@ -103,13 +103,16 @@ class ListComments extends React.Component {
       return (
         <div className='ListComment'>
           {isToggleOn ? (
-            <button onClick={this.handleClick}>Post comment</button>
+            <button className='ButtonPostComment' onClick={this.handleClick}>
+              Post comment
+            </button>
           ) : (
             <FormComment
               id={this.props.article_id}
               addComment={this.addComment}
             />
           )}
+          <p className='CountP'>Post {comments.length} comments</p>
           {comments.map((comment) => {
             return (
               <CardComment

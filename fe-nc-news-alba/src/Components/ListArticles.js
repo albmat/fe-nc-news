@@ -48,6 +48,7 @@ class ListArticles extends React.Component {
     } else {
       return (
         <div className='ListArticles'>
+          <p className='CountP'>Post {articles.length} articles</p>
           {articles.map((article) => {
             return <CardArticle key={article.article_id} article={article} />;
           })}
