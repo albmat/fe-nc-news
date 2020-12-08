@@ -21,6 +21,10 @@
   font-size: calc(10px + 2vmin);
 }
 
+.SpanHeader {
+  color: red;
+}
+
 .NavTopics {
   display: flex;
   justify-content: space-between;
@@ -31,6 +35,11 @@
 
 .Link {
   text-decoration: none;
+  color: black;
+}
+
+.Link:hover {
+  color: rgb(255, 108, 108);
 }
 
 .CardArticle {

@@ -2,6 +2,7 @@ import React from 'react';
 import CardComment from './CardComment';
 import FormComment from './FormComment';
 import Loading from './Loading';
+import ErrorMessage from './ErrorMessage';
 import * as api from '../api';
 
 class ListComments extends React.Component {
@@ -9,13 +10,27 @@ class ListComments extends React.Component {
     comments: [],
     commentUpdated: false,
     isLoading: true,
-    isToggleOn: true
+    isToggleOn: true,
+    hasError: false,
+    errorMessage: ''
   };
 
   componentDidMount() {
-    api.getAllCommentsByArticle(this.props.article_id).then((comments) => {
-      this.setState({ comments, isLoading: false });
-    });
+    api
+      .getAllCommentsByArticle(this.props.article_id)
+      .then((comments) => {
+        this.setState({ comments, isLoading: false });
+      })
+      .catch((err) => {
+        const {
+          response: { status, statusText }
+        } = err;
+        this.setState({
+          isLoading: false,
+          hasError: true,
+          errorMessage: `Comments nof found... ${status}!! ${statusText}`
+        });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -73,12 +88,21 @@ class ListComments extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading) {
+    const {
+      comments,
+      isToggleOn,
+      hasError,
+      errorMessage,
+      isLoading
+    } = this.state;
+    if (isLoading) {
       return <Loading />;
+    } else if (hasError) {
+      return <ErrorMessage errorMessage={errorMessage} />;
     } else {
       return (
         <div className='ListComment'>
-          {this.state.isToggleOn ? (
+          {isToggleOn ? (
             <button onClick={this.handleClick}>Post comment</button>
           ) : (
             <FormComment
@@ -86,8 +110,7 @@ class ListComments extends React.Component {
               addComment={this.addComment}
             />
           )}
-
-          {this.state.comments.map((comment) => {
+          {comments.map((comment) => {
             return (
               <CardComment
                 key={comment.comment_id}

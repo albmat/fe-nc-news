@@ -1,18 +1,33 @@
 import React from 'react';
 import * as api from '../api';
 import Loading from './Loading';
+import ErrorMessage from './ErrorMessage';
 import { Link } from '@reach/router';
 
 class ArticleInfo extends React.Component {
   state = {
     article: {},
-    isLoading: true
+    isLoading: true,
+    hasError: false,
+    errorMessage: ''
   };
 
   componentDidMount() {
-    api.getArticleById(this.props.article_id).then((article) => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .getArticleById(this.props.article_id)
+      .then((article) => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch((err) => {
+        const {
+          response: { status, statusText }
+        } = err;
+        this.setState({
+          isLoading: false,
+          hasError: true,
+          errorMessage: `Article nof found... ${status}!! ${statusText}`
+        });
+      });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,29 +48,23 @@ class ArticleInfo extends React.Component {
   };
 
   render() {
-    const {
-      article_id,
-      title,
-      body,
-      author,
-      created_at,
-      votes,
-      comment_count
-    } = this.state.article;
-    if (this.state.isLoading) {
+    const { article, hasError, errorMessage, isLoading } = this.state;
+    if (isLoading) {
       return <Loading />;
+    } else if (hasError) {
+      return <ErrorMessage errorMessage={errorMessage} />;
     } else {
       return (
         <div className='ArticleInfo'>
-          <h3>{title}</h3>
-          <p>{body}</p>
-          <p>by {author}</p>
-          <p>at {created_at}</p>
-          <p>{votes} votes</p>
+          <h3>{article.title}</h3>
+          <p>{article.body}</p>
+          <p>by {article.author}</p>
+          <p>at {article.created_at}</p>
+          <p>{article.votes} votes</p>
           <button onClick={() => this.updateArticleVotes(1)}>+</button>
           <button onClick={() => this.updateArticleVotes(-1)}>-</button>
-          <p>{comment_count} comments</p>
-          <Link to={`/articles/${article_id}/comments`}>
+          <p>{article.comment_count} comments</p>
+          <Link to={`/articles/${article.article_id}/comments`}>
             <button>All comments</button>
           </Link>
         </div>
