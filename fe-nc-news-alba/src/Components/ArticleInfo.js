@@ -2,6 +2,7 @@ import React from 'react';
 import * as api from '../api';
 import Loading from './Loading';
 import ErrorMessage from './ErrorMessage';
+import moment from 'moment';
 import { Link } from '@reach/router';
 
 class ArticleInfo extends React.Component {
@@ -59,7 +60,10 @@ class ArticleInfo extends React.Component {
           <h3>{article.title}</h3>
           <p>{article.body}</p>
           <p>by {article.author}</p>
-          <p>at {article.created_at}</p>
+          <p>
+            created at{' '}
+            {moment(article.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+          </p>
           <p>{article.votes} votes</p>
           <button onClick={() => this.updateArticleVotes(1)}>+</button>
           <button onClick={() => this.updateArticleVotes(-1)}>-</button>

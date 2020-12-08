@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const CardComment = ({ comment, updateCommentVotes, deleteComment }) => {
   return (
     <div className='CardComment'>
@@ -16,7 +18,10 @@ const CardComment = ({ comment, updateCommentVotes, deleteComment }) => {
         -
       </button>
       <p>by {comment.author}</p>
-      <p>created at {comment.created_at}</p>
+      <p>
+        created at{' '}
+        {moment(comment.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+      </p>
     </div>
   );
 };
