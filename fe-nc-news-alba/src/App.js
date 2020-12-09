@@ -17,7 +17,7 @@ function App() {
       <Router primary={false}>
         <ListComments path='/articles/:article_id/comments' />
         <ListArticles path='/articles' />
-        <ListArticles path='/user/:username' />
+        <ListArticles path='/articlesby/:username' />
         <ListArticles path='/articles/:topic_slug' />
         <ArticleInfo path='/article/:article_id' />
         <ErrorMessage default errorMessage='Page not found' />

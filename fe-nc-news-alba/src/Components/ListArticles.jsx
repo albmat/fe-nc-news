@@ -58,7 +58,6 @@ class ListArticles extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     const { articles, hasError, errorMessage, isLoading } = this.state;
     if (isLoading) {
       return <Loading />;
@@ -68,7 +67,13 @@ class ListArticles extends React.Component {
       return (
         <div className='ListArticles'>
           <NavBarFilter />
-          <p className='CountP'>Post {articles.length} articles</p>
+          <p className='CountP'>
+            Post {articles.length} articles{' '}
+            {this.props.topic_slug || this.props.username ? (
+              <span>by {this.props.topic_slug || this.props.username}</span>
+            ) : null}
+          </p>
+
           {articles.map((article) => {
             return <CardArticle key={article.article_id} article={article} />;
           })}

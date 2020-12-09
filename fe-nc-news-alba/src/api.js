@@ -11,7 +11,6 @@ export const getAllTopics = () => {
 };
 
 export const getAllArticles = (params) => {
-  console.log(params, 'params in api');
   return newsApi
     .get('/articles', { params: { ...params, limit: 100 } })
     .then(({ data }) => {
@@ -41,8 +40,7 @@ export const postCommentByArticle = (id, { username, body }) => {
     })
     .then(({ data }) => {
       return data.comment;
-    })
-    .catch((err) => console.log(err, 'error'));
+    });
 };
 
 export const patchVotes = (place, id) => {

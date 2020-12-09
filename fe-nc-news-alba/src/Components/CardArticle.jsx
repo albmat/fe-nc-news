@@ -8,7 +8,7 @@ const CardArticle = ({ article }) => {
       <p>{article.votes} votes</p>
       <p>
         by{' '}
-        <Link className='Link' to={`/user/${article.author}`}>
+        <Link className='Link' to={`/articlesby/${article.author}`}>
           {article.author}
         </Link>
       </p>
