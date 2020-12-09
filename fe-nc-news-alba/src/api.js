@@ -56,3 +56,15 @@ export const getAllUsers = () => {
     return data.users;
   });
 };
+
+export const postArticle = ({ username, body, topic }) => {
+  return newsApi
+    .post(`/articles`, {
+      username,
+      body,
+      topic
+    })
+    .then(({ data }) => {
+      return data.article;
+    });
+};

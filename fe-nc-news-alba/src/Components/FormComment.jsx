@@ -34,12 +34,10 @@ class FormComment extends React.Component {
             id='body'
             name='body'
             value={this.state.body}
-            placeholder='your comment'
+            placeholder='Enter your comment here...'
             required
             onChange={(event) => this.handleChange(event)}
-          >
-            Enter your comment here...
-          </textarea>
+          ></textarea>
           <button className='FormButton' type='submit'>
             Post
           </button>

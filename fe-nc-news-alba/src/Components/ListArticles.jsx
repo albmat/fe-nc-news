@@ -4,11 +4,13 @@ import CardArticle from './CardArticle';
 import ErrorMessage from './ErrorMessage';
 import Loading from './Loading';
 import NavBarFilter from './NavBarFilter';
+import FormArticle from './FormArticle';
 
 class ListArticles extends React.Component {
   state = {
     articles: [],
     isLoading: true,
+    isToggleOn: true,
     hasError: false,
     errorMessage: ''
   };
@@ -28,6 +30,12 @@ class ListArticles extends React.Component {
       this.getArticles();
     }
   }
+
+  handleClick = () => {
+    this.setState((currState) => ({
+      isToggleOn: !currState.isToggleOn
+    }));
+  };
 
   getArticles = (
     params = {
@@ -52,8 +60,25 @@ class ListArticles extends React.Component {
       });
   };
 
+  addArticle = (newArticle) => {
+    this.setState((currState) => {
+      const newState = {
+        articles: [newArticle, ...currState.articles],
+        isLoading: false,
+        isToggleOn: true
+      };
+      return newState;
+    });
+  };
+
   render() {
-    const { articles, hasError, errorMessage, isLoading } = this.state;
+    const {
+      articles,
+      hasError,
+      errorMessage,
+      isLoading,
+      isToggleOn
+    } = this.state;
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {
@@ -62,6 +87,13 @@ class ListArticles extends React.Component {
       return (
         <div className='ListArticles'>
           <NavBarFilter getArticles={this.getArticles} />
+          {isToggleOn ? (
+            <button className='ButtonPost' onClick={this.handleClick}>
+              Post article
+            </button>
+          ) : (
+            <FormArticle addArticle={this.addArticle} />
+          )}
           <p className='CountP'>
             Post {articles.length} articles{' '}
             {this.props.topic_slug || this.props.username ? (

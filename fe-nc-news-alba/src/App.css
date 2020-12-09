@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-evenly;
   max-width: 400px;
-  margin: 5% auto;
+  margin: 2% auto;
   padding: 10px 0;
 }
 
@@ -70,7 +70,7 @@
   margin: 5% auto;
 }
 
-.ButtonPostComment {
+.ButtonPost {
   margin: 2%;
 }
 
@@ -93,7 +93,21 @@
   margin: 1% auto;
 }
 
+.FormArticleDiv {
+  flex-wrap: wrap;
+  max-width: 60%;
+  margin: 1% auto;
+}
+
 .FormComment {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 100%;
+}
+
+.FormArticle {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

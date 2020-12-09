@@ -8,7 +8,6 @@ import * as api from '../api';
 class ListComments extends React.Component {
   state = {
     comments: [],
-    commentUpdated: false,
     isLoading: true,
     isToggleOn: true,
     hasError: false,
@@ -33,21 +32,6 @@ class ListComments extends React.Component {
       });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const commentUpdated =
-      prevState.commentUpdated !== this.state.commentUpdated;
-    if (commentUpdated) {
-      api.getAllCommentsByArticle(this.props.article_id).then((comments) => {
-        this.setState({
-          comments,
-          isLoading: false,
-          isToggleOn: true,
-          commentUpdated: false
-        });
-      });
-    }
-  }
-
   handleClick = () => {
     this.setState((currState) => ({
       isToggleOn: !currState.isToggleOn
@@ -58,7 +42,6 @@ class ListComments extends React.Component {
     this.setState((currState) => {
       const newState = {
         comments: [newComment, ...currState.comments],
-        commentUpdated: false,
         isLoading: false,
         isToggleOn: true
       };
@@ -97,7 +80,7 @@ class ListComments extends React.Component {
       return (
         <div className='ListComment'>
           {isToggleOn ? (
-            <button className='ButtonPostComment' onClick={this.handleClick}>
+            <button className='ButtonPost' onClick={this.handleClick}>
               Post comment
             </button>
           ) : (
