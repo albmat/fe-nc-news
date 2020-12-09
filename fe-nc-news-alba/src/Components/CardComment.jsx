@@ -1,6 +1,7 @@
 import moment from 'moment';
+import Voter from './Voter';
 
-const CardComment = ({ comment, handleClick, deleteComment }) => {
+const CardComment = ({ comment, deleteComment }) => {
   return (
     <div className='CardComment'>
       <button
@@ -10,9 +11,7 @@ const CardComment = ({ comment, handleClick, deleteComment }) => {
         x
       </button>
       <p>{comment.body}</p>
-      <p>{comment.votes} votes</p>
-      <button onClick={() => handleClick(comment.comment_id, 1)}>+</button>
-      <button onClick={() => handleClick(comment.comment_id, -1)}>-</button>
+      <Voter place='comments' id={comment.comment_id} votes={comment.votes} />
       <p>by {comment.author}</p>
       <p>
         created at{' '}

@@ -25,12 +25,6 @@ export const getArticleById = (id) => {
   });
 };
 
-export const patchArticleVotes = (id, inc_votes) => {
-  return newsApi.patch(`/articles/${id}`, { inc_votes }).then(({ data }) => {
-    return data.article;
-  });
-};
-
 export const getAllCommentsByArticle = (id) => {
   return newsApi
     .get(`/articles/${id}/comments`, { params: { limit: 100 } })
@@ -51,10 +45,8 @@ export const postCommentByArticle = (id, { username, body }) => {
     .catch((err) => console.log(err, 'error'));
 };
 
-export const patchCommentVotes = (id, inc_votes) => {
-  return newsApi.patch(`/comments/${id}`, { inc_votes }).then(({ data }) => {
-    return data.comment;
-  });
+export const patchVotes = (place, id) => {
+  return newsApi.patch(`/${place}/${id}`, { inc_votes: 1 });
 };
 
 export const deleteComment = (id) => {

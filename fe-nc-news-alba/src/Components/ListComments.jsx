@@ -81,12 +81,6 @@ class ListComments extends React.Component {
     });
   };
 
-  updateCommentVotes = (id, vote) => {
-    api.patchCommentVotes(id, vote).then(() => {
-      this.setState({ commentUpdated: true });
-    });
-  };
-
   render() {
     const {
       comments,
@@ -119,7 +113,6 @@ class ListComments extends React.Component {
                 key={comment.comment_id}
                 comment={comment}
                 deleteComment={this.deleteComment}
-                handleClick={this.updateCommentVotes}
               />
             );
           })}
