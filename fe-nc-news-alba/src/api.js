@@ -10,9 +10,10 @@ export const getAllTopics = () => {
   });
 };
 
-export const getAllArticles = (topic) => {
+export const getAllArticles = (params) => {
+  console.log(params, 'params in api');
   return newsApi
-    .get('/articles', { params: { topic, limit: 100 } })
+    .get('/articles', { params: { ...params, limit: 100 } })
     .then(({ data }) => {
       return data.articles;
     });
@@ -58,4 +59,10 @@ export const patchCommentVotes = (id, inc_votes) => {
 
 export const deleteComment = (id) => {
   return newsApi.delete(`/comments/${id}`);
+};
+
+export const getAllUsers = () => {
+  return newsApi.get('/users').then(({ data }) => {
+    return data.users;
+  });
 };

@@ -27,9 +27,18 @@
 
 .NavTopics {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 5% auto;
+  padding: 10px 0;
+}
+
+.NavUsers {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 400px;
+  margin: 5% auto;
   padding: 10px 0;
 }
 
@@ -43,7 +52,7 @@
 }
 
 .CardArticle {
-  max-width: 50%;
+  max-width: 60%;
   margin: 1% auto;
   padding: 1%;
   border: solid black 1px;
@@ -58,7 +67,7 @@
 
 .ArticleInfo {
   max-width: 80%;
-  margin: 1% auto;
+  margin: 5% auto;
 }
 
 .ButtonPostComment {
@@ -110,6 +119,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin: 5%;
 }
 
 .TagIcon {

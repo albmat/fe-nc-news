@@ -31,7 +31,7 @@ class ArticleInfo extends React.Component {
       });
   }
 
-  updateArticleVotes = (vote) => {
+  handleClick = (vote) => {
     api
       .patchArticleVotes(this.state.article.article_id, vote)
       .then((article) => {
@@ -59,8 +59,8 @@ class ArticleInfo extends React.Component {
             {moment(article.created_at).format('MMMM Do YYYY, h:mm:ss a')}
           </p>
           <p>{article.votes} votes</p>
-          <button onClick={() => this.updateArticleVotes(1)}>+</button>
-          <button onClick={() => this.updateArticleVotes(-1)}>-</button>
+          <button onClick={() => this.handleClick(1)}>+</button>
+          <button onClick={() => this.handleClick(-1)}>-</button>
           <p>{article.comment_count} comments</p>
           <Link to={`/articles/${article.article_id}/comments`}>
             <button>All comments</button>

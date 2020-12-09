@@ -119,7 +119,7 @@ class ListComments extends React.Component {
                 key={comment.comment_id}
                 comment={comment}
                 deleteComment={this.deleteComment}
-                updateCommentVotes={this.updateCommentVotes}
+                handleClick={this.updateCommentVotes}
               />
             );
           })}
