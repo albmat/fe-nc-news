@@ -14,10 +14,27 @@ class ListArticles extends React.Component {
   };
 
   componentDidMount() {
-    const params = {
+    this.getArticles();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const newTopic = prevProps.topic_slug !== this.props.topic_slug;
+    if (newTopic) {
+      this.getArticles();
+    }
+
+    const newAuthor = prevProps.username !== this.props.username;
+    if (newAuthor) {
+      this.getArticles();
+    }
+  }
+
+  getArticles = (
+    params = {
       topic: this.props.topic_slug,
       author: this.props.username
-    };
+    }
+  ) => {
     api
       .getAllArticles(params)
       .then((articles) => {
@@ -33,29 +50,7 @@ class ListArticles extends React.Component {
           errorMessage: `Articles nof found... ${status}!! ${statusText}`
         });
       });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const params = {
-      topic: undefined,
-      author: undefined
-    };
-    const newTopic = prevProps.topic_slug !== this.props.topic_slug;
-    if (newTopic) {
-      params.topic = this.props.topic_slug;
-      api.getAllArticles(params).then((articles) => {
-        this.setState({ articles, isLoading: false });
-      });
-    }
-
-    const newAuthor = prevProps.username !== this.props.username;
-    if (newAuthor) {
-      params.author = this.props.username;
-      api.getAllArticles(params).then((articles) => {
-        this.setState({ articles, isLoading: false });
-      });
-    }
-  }
+  };
 
   render() {
     const { articles, hasError, errorMessage, isLoading } = this.state;
@@ -66,7 +61,7 @@ class ListArticles extends React.Component {
     } else {
       return (
         <div className='ListArticles'>
-          <NavBarFilter />
+          <NavBarFilter getArticles={this.getArticles} />
           <p className='CountP'>
             Post {articles.length} articles{' '}
             {this.props.topic_slug || this.props.username ? (

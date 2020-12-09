@@ -1,19 +1,35 @@
 import React from 'react';
-import * as api from '../api';
+// import * as api from '../api';
 
 class NavBarFilter extends React.Component {
-  state = { users: [] };
+  state = { sort_by: 'created_at' };
 
   componentDidMount() {
-    api.getAllUsers().then((users) => {
-      this.setState({ users });
-    });
+    this.props.getArticles(this.state);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const newFilter = prevState.sort_by !== this.state.sort_by;
+    if (newFilter) {
+      this.props.getArticles(this.state);
+    }
+  }
+
+  changeHandler = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
   render() {
     return (
       <nav className='NavBarFilter'>
-        <select id='sort_by'>
+        <select
+          className='FilterSelect'
+          id='sort_by'
+          name='sort_by'
+          onChange={this.changeHandler}
+        >
+          <option value='created_at'>All</option>
           <option value='created_at'>Date</option>
           <option value='comment_count'>Comments</option>
           <option value='votes'>Votes</option>
