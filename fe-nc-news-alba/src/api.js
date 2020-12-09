@@ -11,9 +11,11 @@ export const getAllTopics = () => {
 };
 
 export const getAllArticles = (topic) => {
-  return newsApi.get('/articles', { params: { topic } }).then(({ data }) => {
-    return data.articles;
-  });
+  return newsApi
+    .get('/articles', { params: { topic, limit: 100 } })
+    .then(({ data }) => {
+      return data.articles;
+    });
 };
 
 export const getArticleById = (id) => {
@@ -29,9 +31,11 @@ export const patchArticleVotes = (id, inc_votes) => {
 };
 
 export const getAllCommentsByArticle = (id) => {
-  return newsApi.get(`/articles/${id}/comments`).then(({ data }) => {
-    return data.comments;
-  });
+  return newsApi
+    .get(`/articles/${id}/comments`, { params: { limit: 100 } })
+    .then(({ data }) => {
+      return data.comments;
+    });
 };
 
 export const postCommentByArticle = (id, { username, body }) => {

@@ -31,20 +31,14 @@ class ArticleInfo extends React.Component {
       });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const newVotes = prevState.article.votes !== this.state.article.votes;
-    if (newVotes) {
-      api.getArticleById(this.props.article_id).then((article) => {
-        this.setState({ article, isLoading: false });
-      });
-    }
-  }
-
   updateArticleVotes = (vote) => {
     api
       .patchArticleVotes(this.state.article.article_id, vote)
       .then((article) => {
-        this.setState({ article, isLoading: false });
+        this.setState((currState) => {
+          const newArticle = { ...currState.article, votes: article.votes };
+          return { article: newArticle, isLoading: false };
+        });
       });
   };
 

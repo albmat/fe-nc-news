@@ -14,7 +14,7 @@ function App() {
       <NavBar />
       <Header />
       <NavTopics />
-      <Router>
+      <Router primary={false}>
         <ListComments path='/articles/:article_id/comments' />
         <ListArticles path='/articles' />
         <ListArticles path='/:topic_slug' />
