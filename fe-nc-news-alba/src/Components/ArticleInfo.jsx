@@ -49,7 +49,7 @@ class ArticleInfo extends React.Component {
             {moment(article.created_at).format('MMMM Do YYYY, h:mm:ss a')}
           </p>
           <Voter
-            place='articles'
+            place='article'
             id={article.article_id}
             votes={article.votes}
           />

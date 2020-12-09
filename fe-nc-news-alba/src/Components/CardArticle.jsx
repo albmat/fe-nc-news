@@ -13,7 +13,7 @@ const CardArticle = ({ article }) => {
         </Link>
       </p>
       <p>{article.comment_count} comments</p>
-      <Link to={`/articles/${article.article_id}`}>
+      <Link to={`/article/${article.article_id}`}>
         <button>+Info</button>
       </Link>
     </div>

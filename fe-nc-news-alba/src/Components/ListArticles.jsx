@@ -14,8 +14,12 @@ class ListArticles extends React.Component {
   };
 
   componentDidMount() {
+    const params = {
+      topic: this.props.topic_slug,
+      author: this.props.username
+    };
     api
-      .getAllArticles()
+      .getAllArticles(params)
       .then((articles) => {
         this.setState({ articles, isLoading: false });
       })
@@ -54,6 +58,7 @@ class ListArticles extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const { articles, hasError, errorMessage, isLoading } = this.state;
     if (isLoading) {
       return <Loading />;

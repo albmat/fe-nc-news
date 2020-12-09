@@ -12,6 +12,7 @@ class Voter extends React.Component {
 
   handleClick = () => {
     api.patchVotes(this.props.place, this.props.id).catch((err) => {
+      console.dir(err, 'error');
       const {
         response: { status, statusText }
       } = err;
@@ -26,8 +27,8 @@ class Voter extends React.Component {
   };
 
   render() {
-    if (this.hasError) {
-      <ErrorMessage errorMessage={this.state.errorMessage} />;
+    if (this.state.hasError) {
+      return <ErrorMessage errorMessage={this.state.errorMessage} />;
     } else {
       return (
         <>

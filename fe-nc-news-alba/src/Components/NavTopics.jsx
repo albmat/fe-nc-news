@@ -18,7 +18,11 @@ class NavTopics extends React.Component {
       <nav className='NavTopics'>
         {this.state.topics.map((topic) => {
           return (
-            <Link key={topic.slug} className='Link' to={`/${topic.slug}`}>
+            <Link
+              key={topic.slug}
+              className='Link'
+              to={`/articles/${topic.slug}`}
+            >
               {topic.slug}
             </Link>
           );

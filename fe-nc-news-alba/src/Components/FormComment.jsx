@@ -35,6 +35,7 @@ class FormComment extends React.Component {
             name='body'
             value={this.state.body}
             placeholder='your comment'
+            required
             onChange={(event) => this.handleChange(event)}
           >
             Enter your comment here...
