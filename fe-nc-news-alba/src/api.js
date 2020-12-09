@@ -43,8 +43,8 @@ export const postCommentByArticle = (id, { username, body }) => {
     });
 };
 
-export const patchVotes = (place, id) => {
-  return newsApi.patch(`/${place}/${id}`, { inc_votes: 1 });
+export const patchVotes = (place, id, vote) => {
+  return newsApi.patch(`/${place}/${id}`, { inc_votes: vote });
 };
 
 export const deleteComment = (id) => {

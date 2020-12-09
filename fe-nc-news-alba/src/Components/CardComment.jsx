@@ -11,7 +11,7 @@ const CardComment = ({ comment, deleteComment }) => {
         x
       </button>
       <p>{comment.body}</p>
-      <Voter place='comment' id={comment.comment_id} votes={comment.votes} />
+      <Voter place='comments' id={comment.comment_id} votes={comment.votes} />
       <p>by {comment.author}</p>
       <p>
         created at{' '}

@@ -10,20 +10,19 @@ class Voter extends React.Component {
     errorMessage: ''
   };
 
-  handleClick = () => {
-    api.patchVotes(this.props.place, this.props.id).catch((err) => {
-      console.dir(err, 'error');
+  handleClick = (vote) => {
+    api.patchVotes(this.props.place, this.props.id, vote).catch((err) => {
       const {
         response: { status, statusText }
       } = err;
       this.setState({
         hasError: true,
-        errorMessage: `Article nof found... ${status}!! ${statusText}`,
+        errorMessage: `Impossible... ${status}!! ${statusText}`,
         hasVoted: false,
         vote_change: 0
       });
     });
-    this.setState({ vote_change: 1, hasVoted: true });
+    this.setState({ vote_change: vote, hasVoted: true });
   };
 
   render() {
@@ -33,8 +32,17 @@ class Voter extends React.Component {
       return (
         <>
           <p>{this.props.votes + this.state.vote_change} votes</p>
-          <button onClick={this.handleClick} disabled={this.state.hasVoted}>
-            Vote!
+          <button
+            onClick={() => this.handleClick(1)}
+            disabled={this.state.hasVoted}
+          >
+            VoteUp!
+          </button>
+          <button
+            onClick={() => this.handleClick(-1)}
+            disabled={this.state.hasVoted}
+          >
+            VoteDown!
           </button>
         </>
       );
