@@ -1,6 +1,6 @@
 import { Link } from '@reach/router';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className='AppHeader'>
       <Link className='Link' to='/articles'>

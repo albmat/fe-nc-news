@@ -21,6 +21,10 @@
   font-size: calc(10px + 2vmin);
 }
 
+.hideWelcome {
+  visibility: hidden;
+}
+
 .SpanHeader {
   color: red;
 }

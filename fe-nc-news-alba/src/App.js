@@ -11,13 +11,25 @@ import React from 'react';
 
 class App extends React.Component {
   state = {
-    loggedUser: 'jessjelly'
+    loggedUser: null
+  };
+
+  logIn = (username) => {
+    this.setState({ loggedUser: username });
+  };
+
+  logOut = () => {
+    this.setState({ loggedUser: null });
   };
 
   render() {
     return (
       <div className='App'>
-        <NavBar />
+        <NavBar
+          logIn={this.logIn}
+          logOut={this.logOut}
+          loggedUser={this.state.loggedUser}
+        />
         <Header />
         <NavTopics />
         <Router primary={false}>
