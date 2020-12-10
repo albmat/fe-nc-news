@@ -2,6 +2,19 @@ import React from 'react';
 import * as api from '../api';
 import ErrorMessage from './ErrorMessage';
 import { UserContext } from '../Context/User';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+
+const styles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(2, 'auto'),
+      width: '25px'
+    }
+  }
+}));
 
 class NavBar extends React.Component {
   state = {
@@ -54,23 +67,33 @@ class NavBar extends React.Component {
 
   render() {
     const { hasError, errorMessage, isToggleOn, username } = this.state;
-    const { logOut } = this.props;
+    const { logOut, classes } = this.props;
     const { loggedUser } = this.context;
 
     return (
       <nav className='NavBar'>
         {loggedUser ? (
-          <button className='NavBarButton' onClick={logOut}>
+          <Button
+            onClick={logOut}
+            size='small'
+            className={classes.button}
+            endIcon={<Icon>send</Icon>}
+          >
             LogOut
-          </button>
+          </Button>
         ) : isToggleOn ? (
-          <button className='NavBarButton' onClick={this.handleClick}>
+          <Button
+            onClick={this.handleClick}
+            size='small'
+            className={classes.button}
+            endIcon={<Icon>send</Icon>}
+          >
             LogIn
-          </button>
+          </Button>
         ) : (
           <div className='FormLoginDiv'>
-            <form className='FormLogin' onSubmit={this.handleSubmit}>
-              <input
+            <form className={classes.root} onSubmit={this.handleSubmit}>
+              <TextField
                 className='FormInputLogin'
                 type='text'
                 id='username'
@@ -79,10 +102,15 @@ class NavBar extends React.Component {
                 placeholder='username'
                 required
                 onChange={this.handleChange}
-              ></input>
-              <button className='FormButton' type='submit'>
-                send
-              </button>
+              />
+              <Button
+                size='small'
+                className={classes.button}
+                endIcon={<Icon>send</Icon>}
+                type='submit'
+              >
+                Send
+              </Button>
             </form>
           </div>
         )}
@@ -97,4 +125,5 @@ class NavBar extends React.Component {
 
 NavBar.contextType = UserContext;
 
-export default NavBar;
+export default withStyles(styles, { withTheme: true })(NavBar);
+// export default NavBar;

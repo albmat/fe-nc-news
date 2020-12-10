@@ -1,35 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from '@reach/router';
 import * as api from '../api';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-class NavTopics extends React.Component {
-  state = {
-    topics: []
+export default function NavTopics() {
+  const [topics, setTopics] = React.useState([]);
+  const [value, setValue] = React.useState(2);
+
+  useEffect(() => {
+    api.getAllTopics().then((topics) => {
+      setTopics(topics);
+    });
+  }, []);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
-  componentDidMount() {
-    api.getAllTopics().then((topics) => {
-      this.setState({ topics });
-    });
-  }
-
-  render() {
-    return (
-      <nav className='NavTopics'>
-        {this.state.topics.map((topic) => {
+  return (
+    <Paper square>
+      <Tabs
+        value={value}
+        indicatorColor='primary'
+        textColor='primary'
+        onChange={handleChange}
+      >
+        {topics.map((topic) => {
           return (
-            <Link
-              key={topic.slug}
-              className='Link'
-              to={`/articles/${topic.slug}`}
-            >
-              {topic.slug}
-            </Link>
+            <Tab
+              label={
+                <Link
+                  key={topic.slug}
+                  className='Link'
+                  to={`/articles/${topic.slug}`}
+                >
+                  {topic.slug}
+                </Link>
+              }
+            />
           );
         })}
-      </nav>
-    );
-  }
+      </Tabs>
+    </Paper>
+  );
 }
-
-export default NavTopics;
