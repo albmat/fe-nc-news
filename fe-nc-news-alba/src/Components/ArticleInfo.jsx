@@ -72,12 +72,14 @@ class ArticleInfo extends React.Component {
           <Link to={`/article/${article.article_id}/comments`}>
             <button>All comments</button>
           </Link>
-          <button
-            className='ButtonDeleteArticle'
-            onClick={() => this.deleteArticle(article.article_id)}
-          >
-            Delete
-          </button>
+          {this.props.loggedUser === article.author ? (
+            <button
+              className='ButtonDeleteArticle'
+              onClick={() => this.deleteArticle(article.article_id)}
+            >
+              Delete
+            </button>
+          ) : null}
         </div>
       );
     }

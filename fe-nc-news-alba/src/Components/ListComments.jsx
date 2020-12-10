@@ -11,8 +11,7 @@ class ListComments extends React.Component {
     isLoading: true,
     isToggleOn: true,
     hasError: false,
-    errorMessage: '',
-    loggedUser: 'jessjelly'
+    errorMessage: ''
   };
 
   componentDidMount() {
@@ -71,8 +70,7 @@ class ListComments extends React.Component {
       isToggleOn,
       hasError,
       errorMessage,
-      isLoading,
-      loggedUser
+      isLoading
     } = this.state;
     if (isLoading) {
       return <Loading />;
@@ -97,7 +95,7 @@ class ListComments extends React.Component {
               <CardComment
                 key={comment.comment_id}
                 comment={comment}
-                loggedUser={loggedUser}
+                loggedUser={this.props.loggedUser}
                 deleteComment={this.deleteComment}
               />
             );

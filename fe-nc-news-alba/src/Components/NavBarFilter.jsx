@@ -9,10 +9,6 @@ class NavBarFilter extends React.Component {
     order: 'asc'
   };
 
-  // componentDidMount() {
-  //   // this.props.getArticles(this.state);
-  // }
-
   componentDidUpdate(prevProps, prevState) {
     const newFilter = prevState.sort_by !== this.state.sort_by;
     if (newFilter) {
