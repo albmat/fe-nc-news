@@ -41,7 +41,8 @@ class ListArticles extends React.Component {
     params = {
       topic: this.props.topic_slug,
       author: this.props.username,
-      sort_by: 'created_at'
+      sort_by: 'created_at',
+      order: 'asc'
     }
   ) => {
     api

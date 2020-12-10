@@ -15,11 +15,11 @@ function App() {
       <Header />
       <NavTopics />
       <Router primary={false}>
-        <ListComments path='/articles/:article_id/comments' />
         <ListArticles path='/articles' />
         <ListArticles path='/articlesby/:username' />
         <ListArticles path='/articles/:topic_slug' />
         <ArticleInfo path='/article/:article_id' />
+        <ListComments path='/article/:article_id/comments' />
         <ErrorMessage default errorMessage='Page not found' />
       </Router>
     </div>

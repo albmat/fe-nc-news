@@ -69,7 +69,7 @@ class ArticleInfo extends React.Component {
             votes={article.votes}
           />
           <p>{article.comment_count} comments</p>
-          <Link to={`/articles/${article.article_id}/comments`}>
+          <Link to={`/article/${article.article_id}/comments`}>
             <button>All comments</button>
           </Link>
           <button
