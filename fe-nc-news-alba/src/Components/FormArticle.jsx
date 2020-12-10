@@ -3,29 +3,40 @@ import * as api from '../api';
 
 class FormArticle extends React.Component {
   state = {
-    username: 'jessjelly',
-    topic: 'coding',
+    author: 'jessjelly',
+    topic: '',
     title: '',
     body: ''
   };
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     api.postArticle(this.state).then((newArticle) => {
       this.props.addArticle(newArticle);
     });
-  }
+  };
 
   render() {
     return (
       <div className='FormArticleDiv'>
         <form className='FormArticle' onSubmit={this.handleSubmit}>
+          <select
+            className='Select'
+            id='topic'
+            name='topic'
+            onChange={this.handleChange}
+          >
+            <option value=''>Topics</option>
+            <option value='coding'>Coding</option>
+            <option value='football'>Football</option>
+            <option value='cooking'>Cooking</option>
+          </select>
           <input
             className='FormInput'
             type='text'

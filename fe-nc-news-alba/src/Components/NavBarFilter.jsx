@@ -1,11 +1,15 @@
 import React from 'react';
 
 class NavBarFilter extends React.Component {
-  state = { sort_by: 'created_at' };
+  state = {
+    topic: this.props.topic,
+    author: this.props.author,
+    sort_by: 'created_at'
+  };
 
-  componentDidMount() {
-    this.props.getArticles(this.state);
-  }
+  // componentDidMount() {
+  //   // this.props.getArticles(this.state);
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     const newFilter = prevState.sort_by !== this.state.sort_by;
@@ -24,7 +28,7 @@ class NavBarFilter extends React.Component {
     return (
       <nav className='NavBarFilter'>
         <select
-          className='FilterSelect'
+          className='Select'
           id='sort_by'
           name='sort_by'
           onChange={this.changeHandler}

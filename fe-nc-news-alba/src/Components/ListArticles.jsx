@@ -40,7 +40,8 @@ class ListArticles extends React.Component {
   getArticles = (
     params = {
       topic: this.props.topic_slug,
-      author: this.props.username
+      author: this.props.username,
+      sort_by: 'created_at'
     }
   ) => {
     api
@@ -86,7 +87,11 @@ class ListArticles extends React.Component {
     } else {
       return (
         <div className='ListArticles'>
-          <NavBarFilter getArticles={this.getArticles} />
+          <NavBarFilter
+            topic={this.props.topic_slug}
+            author={this.props.username}
+            getArticles={this.getArticles}
+          />
           {isToggleOn ? (
             <button className='ButtonPost' onClick={this.handleClick}>
               Post article

@@ -8,26 +8,23 @@ class FormComment extends React.Component {
     body: ''
   };
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     api.postCommentByArticle(this.props.id, this.state).then((newComment) => {
       this.props.addComment(newComment);
     });
-  }
+  };
 
   render() {
     return (
       <div className='FormCommentDiv'>
-        <form
-          className='FormComment'
-          onSubmit={(event) => this.handleSubmit(event)}
-        >
+        <form className='FormComment' onSubmit={this.handleSubmit}>
           <textarea
             className='FormInput'
             type='text'
@@ -36,7 +33,7 @@ class FormComment extends React.Component {
             value={this.state.body}
             placeholder='Enter your comment here...'
             required
-            onChange={(event) => this.handleChange(event)}
+            onChange={this.handleChange}
           ></textarea>
           <button className='FormButton' type='submit'>
             Post
