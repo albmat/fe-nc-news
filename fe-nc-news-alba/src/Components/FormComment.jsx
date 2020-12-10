@@ -21,7 +21,7 @@ class FormComment extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     api
-      .postCommentByArticle(this.props.id, this.state)
+      .postCommentByArticle(this.props.id, this.state, this.context.loggedUser)
       .then((newComment) => {
         this.props.addComment(newComment);
       })

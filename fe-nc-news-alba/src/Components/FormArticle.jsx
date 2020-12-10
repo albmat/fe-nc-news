@@ -22,7 +22,7 @@ class FormArticle extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     api
-      .postArticle(this.state)
+      .postArticle(this.state, this.context.loggedUser)
       .then((newArticle) => {
         this.props.addArticle(newArticle);
       })

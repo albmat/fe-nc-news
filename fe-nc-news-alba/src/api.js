@@ -32,7 +32,7 @@ export const getAllCommentsByArticle = (id) => {
     });
 };
 
-export const postCommentByArticle = (id, { username, body }) => {
+export const postCommentByArticle = (id, { body }, username) => {
   return newsApi
     .post(`/articles/${id}/comments`, {
       username,
@@ -57,7 +57,7 @@ export const getAllUsers = () => {
   });
 };
 
-export const postArticle = ({ title, author, body, topic }) => {
+export const postArticle = ({ title, body, topic }, author) => {
   return newsApi
     .post(`/articles`, {
       title,
