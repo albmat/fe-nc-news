@@ -11,7 +11,8 @@ class ArticleInfo extends React.Component {
     article: {},
     isLoading: true,
     hasError: false,
-    errorMessage: ''
+    errorMessage: '',
+    isDeleted: false
   };
 
   componentDidMount() {
@@ -32,12 +33,26 @@ class ArticleInfo extends React.Component {
       });
   }
 
+  deleteArticle = (id) => {
+    api.deleteArticle(id).then(() => {
+      this.setState({ isDeleted: true });
+    });
+  };
+
   render() {
-    const { article, hasError, errorMessage, isLoading } = this.state;
+    const {
+      article,
+      hasError,
+      errorMessage,
+      isLoading,
+      isDeleted
+    } = this.state;
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {
       return <ErrorMessage errorMessage={errorMessage} />;
+    } else if (isDeleted) {
+      return <ErrorMessage errorMessage='This article has been removed!!' />;
     } else {
       return (
         <div className='ArticleInfo'>
@@ -57,6 +72,12 @@ class ArticleInfo extends React.Component {
           <Link to={`/articles/${article.article_id}/comments`}>
             <button>All comments</button>
           </Link>
+          <button
+            className='ButtonDeleteArticle'
+            onClick={() => this.deleteArticle(article.article_id)}
+          >
+            Delete
+          </button>
         </div>
       );
     }
