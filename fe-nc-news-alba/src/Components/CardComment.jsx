@@ -1,7 +1,11 @@
 import moment from 'moment';
 import Voter from './Voter';
+import React, { useContext } from 'react';
+import { UserContext } from '../Context/User';
 
-const CardComment = ({ comment, deleteComment, loggedUser }) => {
+const CardComment = ({ comment, deleteComment }) => {
+  const { loggedUser } = useContext(UserContext);
+
   return (
     <div className='CardComment'>
       {loggedUser === comment.author ? (

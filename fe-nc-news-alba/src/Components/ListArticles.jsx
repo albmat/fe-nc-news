@@ -98,7 +98,10 @@ class ListArticles extends React.Component {
               Post article
             </button>
           ) : (
-            <FormArticle addArticle={this.addArticle} />
+            <FormArticle
+              addArticle={this.addArticle}
+              loggedUser={this.props.loggedUser}
+            />
           )}
           <p className='CountP'>
             Post {articles.length} articles{' '}

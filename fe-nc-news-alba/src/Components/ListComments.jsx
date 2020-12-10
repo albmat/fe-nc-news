@@ -72,6 +72,7 @@ class ListComments extends React.Component {
       errorMessage,
       isLoading
     } = this.state;
+
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {
@@ -95,7 +96,6 @@ class ListComments extends React.Component {
               <CardComment
                 key={comment.comment_id}
                 comment={comment}
-                loggedUser={this.props.loggedUser}
                 deleteComment={this.deleteComment}
               />
             );

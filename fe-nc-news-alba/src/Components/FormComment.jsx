@@ -1,11 +1,15 @@
 import React from 'react';
 import * as api from '../api';
+import { UserContext } from '../Context/User';
+import ErrorMessage from './ErrorMessage';
 
 class FormComment extends React.Component {
   state = {
     comment: {},
-    username: 'jessjelly',
-    body: ''
+    username: this.context.loggedUser,
+    body: '',
+    hasError: false,
+    errorMessage: ''
   };
 
   handleChange = (event) => {
@@ -16,12 +20,25 @@ class FormComment extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    api.postCommentByArticle(this.props.id, this.state).then((newComment) => {
-      this.props.addComment(newComment);
-    });
+    api
+      .postCommentByArticle(this.props.id, this.state)
+      .then((newComment) => {
+        this.props.addComment(newComment);
+      })
+      .catch(() => {
+        this.setState((currState) => {
+          const newState = {
+            ...currState,
+            hasError: true,
+            errorMessage: 'You need to be logged in to do that!!'
+          };
+          return newState;
+        });
+      });
   };
 
   render() {
+    const { body, hasError, errorMessage } = this.state;
     return (
       <div className='FormCommentDiv'>
         <form className='FormComment' onSubmit={this.handleSubmit}>
@@ -30,7 +47,7 @@ class FormComment extends React.Component {
             type='text'
             id='body'
             name='body'
-            value={this.state.body}
+            value={body}
             placeholder='Enter your comment here...'
             required
             onChange={this.handleChange}
@@ -39,9 +56,12 @@ class FormComment extends React.Component {
             Post
           </button>
         </form>
+        {hasError ? <ErrorMessage errorMessage={errorMessage} /> : null}
       </div>
     );
   }
 }
+
+FormComment.contextType = UserContext;
 
 export default FormComment;

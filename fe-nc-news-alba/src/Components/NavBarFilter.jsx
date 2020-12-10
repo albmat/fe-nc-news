@@ -6,7 +6,7 @@ class NavBarFilter extends React.Component {
     topic: this.props.topic,
     author: this.props.author,
     sort_by: 'created_at',
-    order: 'asc'
+    order: 'desc'
   };
 
   componentDidUpdate(prevProps, prevState) {

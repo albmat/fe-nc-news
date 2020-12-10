@@ -5,6 +5,7 @@ import ErrorMessage from './ErrorMessage';
 import Voter from './Voter';
 import moment from 'moment';
 import { Link } from '@reach/router';
+import { UserContext } from '../Context/User';
 
 class ArticleInfo extends React.Component {
   state = {
@@ -47,6 +48,9 @@ class ArticleInfo extends React.Component {
       isLoading,
       isDeleted
     } = this.state;
+
+    const { loggedUser } = this.context;
+
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {
@@ -72,7 +76,7 @@ class ArticleInfo extends React.Component {
           <Link to={`/article/${article.article_id}/comments`}>
             <button>All comments</button>
           </Link>
-          {this.props.loggedUser === article.author ? (
+          {loggedUser === article.author ? (
             <button
               className='ButtonDeleteArticle'
               onClick={() => this.deleteArticle(article.article_id)}
@@ -85,5 +89,7 @@ class ArticleInfo extends React.Component {
     }
   }
 }
+
+ArticleInfo.contextType = UserContext;
 
 export default ArticleInfo;

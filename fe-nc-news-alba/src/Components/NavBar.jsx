@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../api';
 import ErrorMessage from './ErrorMessage';
+import { UserContext } from '../Context/User';
 
 class NavBar extends React.Component {
   state = {
@@ -42,7 +43,7 @@ class NavBar extends React.Component {
 
     if (userExists.length !== 0) {
       this.props.logIn(this.state.username);
-      this.setState({ isToggleOn: true, hasError: false });
+      this.setState({ isToggleOn: true, hasError: false, username: '' });
     } else {
       this.setState({
         hasError: true,
@@ -52,9 +53,9 @@ class NavBar extends React.Component {
   };
 
   render() {
-    console.log(this.state.users);
     const { hasError, errorMessage, isToggleOn, username } = this.state;
-    const { logOut, loggedUser } = this.props;
+    const { logOut } = this.props;
+    const { loggedUser } = this.context;
 
     return (
       <nav className='NavBar'>
@@ -93,5 +94,7 @@ class NavBar extends React.Component {
     );
   }
 }
+
+NavBar.contextType = UserContext;
 
 export default NavBar;
