@@ -23,22 +23,16 @@ export default function NavTopics() {
     <Paper square>
       <Tabs
         value={value}
-        indicatorColor='primary'
-        textColor='primary'
+        indicatorColor='secondary'
+        textColor='secondary'
         onChange={handleChange}
       >
         {topics.map((topic) => {
           return (
             <Tab
-              label={
-                <Link
-                  key={topic.slug}
-                  className='Link'
-                  to={`/articles/${topic.slug}`}
-                >
-                  {topic.slug}
-                </Link>
-              }
+              label={topic.slug}
+              to={`/articles/${topic.slug}`}
+              component={Link}
             />
           );
         })}

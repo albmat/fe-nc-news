@@ -45,6 +45,11 @@
   padding: 10px 0;
 }
 
+.MuiTabs-flexContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .NavUsers {
   flex-wrap: wrap;
   display: flex;

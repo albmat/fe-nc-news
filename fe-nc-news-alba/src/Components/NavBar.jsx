@@ -53,6 +53,13 @@ class NavBar extends React.Component {
     }));
   };
 
+  handleBlur = () => {
+    this.setState((currState) => ({
+      isToggleOn: !currState.isToggleOn,
+      hasError: false
+    }));
+  };
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -104,7 +111,11 @@ class NavBar extends React.Component {
           </Button>
         ) : (
           <div className='FormLoginDiv'>
-            <form className={classes.root} onSubmit={this.handleSubmit}>
+            <form
+              className={classes.root}
+              onSubmit={this.handleSubmit}
+              onBlur={this.handleBlur}
+            >
               <TextField
                 className='FormInputLogin'
                 type='text'
