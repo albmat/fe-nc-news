@@ -22,12 +22,9 @@ class ListArticles extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const newTopic = prevProps.topic_slug !== this.props.topic_slug;
-    if (newTopic) {
-      this.getArticles();
-    }
-
     const newAuthor = prevProps.username !== this.props.username;
-    if (newAuthor) {
+
+    if (newTopic || newAuthor) {
       this.getArticles();
     }
   }
@@ -106,14 +103,13 @@ class ListArticles extends React.Component {
           ) : (
             <FormArticle addArticle={this.addArticle} />
           )}
-          {isCreated ? (
+          {isCreated && (
             <ErrorMessage errorMessage='This article has been successfully post' />
-          ) : null}
+          )}
           <p className='CountP'>
             Post {articles.length} articles{' '}
-            {topic_slug || username ? (
-              <span>by {topic_slug || username}</span>
-            ) : null}
+            {topic_slug ||
+              (username && <span>by {topic_slug || username}</span>)}
           </p>
 
           {articles.map((article) => {

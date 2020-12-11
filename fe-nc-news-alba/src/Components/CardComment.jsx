@@ -9,14 +9,14 @@ const CardComment = ({ comment, deleteComment }) => {
 
   return (
     <div className='CardComment'>
-      {loggedUser === author ? (
+      {loggedUser === author && (
         <button
           className='ButtonDeleteComment'
           onClick={() => deleteComment(comment_id)}
         >
           x
         </button>
-      ) : null}
+      )}
 
       <p>{body}</p>
       <Voter place='comments' id={comment_id} votes={votes} />

@@ -108,12 +108,12 @@ class ListComments extends React.Component {
           ) : (
             <FormComment id={article_id} addComment={this.addComment} />
           )}
-          {isDeleted ? (
+          {isDeleted && (
             <ErrorMessage errorMessage='This comment has been successfully removed' />
-          ) : null}
-          {isCreated ? (
+          )}
+          {isCreated && (
             <ErrorMessage errorMessage='This comment has been successfully post' />
-          ) : null}
+          )}
           <p className='CountP'>Post {comments.length} comments</p>
           {comments.map((comment) => {
             return (

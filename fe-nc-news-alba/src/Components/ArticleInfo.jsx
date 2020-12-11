@@ -6,6 +6,8 @@ import Voter from './Voter';
 import moment from 'moment';
 import { Link } from '@reach/router';
 import { UserContext } from '../Context/User';
+import ListComments from '../Components/ListComments';
+import { Router } from '@reach/router';
 
 class ArticleInfo extends React.Component {
   state = {
@@ -29,7 +31,7 @@ class ArticleInfo extends React.Component {
         this.setState({
           isLoading: false,
           hasError: true,
-          errorMessage: `Article nof found... ${status}!! ${statusText}`
+          errorMessage: `Article not found... ${status}!! ${statusText}`
         });
       });
   }
@@ -47,7 +49,7 @@ class ArticleInfo extends React.Component {
         this.setState({
           isLoading: false,
           hasError: true,
-          errorMessage: `Article nof found... ${status}!! ${statusText}`
+          errorMessage: `Article not found... ${status}!! ${statusText}`
         });
       });
   };
@@ -88,14 +90,17 @@ class ArticleInfo extends React.Component {
           <Link to={`/article/${article.article_id}/comments`}>
             <button>All comments</button>
           </Link>
-          {loggedUser === article.author ? (
+          {loggedUser === article.author && (
             <button
               className='ButtonDeleteArticle'
               onClick={() => this.deleteArticle(article.article_id)}
             >
               Delete
             </button>
-          ) : null}
+          )}
+          <Router primary={false}>
+            <ListComments path='/comments' />
+          </Router>
         </div>
       );
     }

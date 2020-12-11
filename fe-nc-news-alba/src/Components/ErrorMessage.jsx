@@ -1,5 +1,5 @@
-import TagOpenIcon from '../TagOpenIcon.png';
-import TagCloseIcon from '../TagCloseIcon.png';
+import TagOpenIcon from '../Icons/TagOpenIcon.png';
+import TagCloseIcon from '../Icons/TagCloseIcon.png';
 
 const ErrorMessage = ({ errorMessage }) => {
   return (

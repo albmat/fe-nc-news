@@ -3,8 +3,6 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/all';
 
 class NavBarFilter extends React.Component {
   state = {
-    topic: this.props.topic,
-    author: this.props.author,
     sort_by: 'created_at',
     order: 'desc'
   };
@@ -12,12 +10,20 @@ class NavBarFilter extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     const newFilter = prevState.sort_by !== this.state.sort_by;
     if (newFilter) {
-      this.props.getArticles(this.state);
+      this.props.getArticles({
+        ...this.state,
+        topic: this.props.topic,
+        author: this.props.author
+      });
     }
 
     const newOrder = prevState.order !== this.state.order;
     if (newOrder) {
-      this.props.getArticles(this.state);
+      this.props.getArticles({
+        ...this.state,
+        topic: this.props.topic,
+        author: this.props.author
+      });
     }
   }
 

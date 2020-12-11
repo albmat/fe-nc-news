@@ -6,7 +6,6 @@ import ErrorMessage from './ErrorMessage';
 class FormComment extends React.Component {
   state = {
     comment: {},
-    username: this.context.loggedUser,
     body: '',
     hasError: false,
     errorMessage: ''
@@ -26,13 +25,9 @@ class FormComment extends React.Component {
         this.props.addComment(newComment);
       })
       .catch(() => {
-        this.setState((currState) => {
-          const newState = {
-            ...currState,
-            hasError: true,
-            errorMessage: 'You need to be logged in to do that!!'
-          };
-          return newState;
+        this.setState({
+          hasError: true,
+          errorMessage: 'You need to be logged in to do that!!'
         });
       });
   };
@@ -56,7 +51,7 @@ class FormComment extends React.Component {
             Post
           </button>
         </form>
-        {hasError ? <ErrorMessage errorMessage={errorMessage} /> : null}
+        {hasError && <ErrorMessage errorMessage={errorMessage} />}
       </div>
     );
   }

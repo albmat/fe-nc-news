@@ -3,7 +3,6 @@ import Header from './Components/Header';
 import NavTopics from './Components/NavTopics';
 import ListArticles from './Components/ListArticles';
 import ArticleInfo from './Components/ArticleInfo';
-import ListComments from './Components/ListComments';
 import NavBar from './Components/NavBar';
 import ErrorMessage from './Components/ErrorMessage';
 import { UserContext } from './Context/User';
@@ -36,8 +35,7 @@ class App extends React.Component {
             <ListArticles path='/articles' />
             <ListArticles path='/articlesby/:username' />
             <ListArticles path='/articles/:topic_slug' />
-            <ArticleInfo path='/article/:article_id' />
-            <ListComments path='/article/:article_id/comments' />
+            <ArticleInfo path='/article/:article_id/*' />
             <ErrorMessage default errorMessage='Page not found' />
           </Router>
         </div>

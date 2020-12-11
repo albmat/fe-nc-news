@@ -2,10 +2,10 @@ import React from 'react';
 import * as api from '../api';
 import ErrorMessage from './ErrorMessage';
 import { UserContext } from '../Context/User';
+import { navigate } from '@reach/router';
 
 class FormArticle extends React.Component {
   state = {
-    author: this.context.loggedUser,
     topic: '',
     title: '',
     body: '',
@@ -21,21 +21,20 @@ class FormArticle extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { loggedUser } = this.context;
+
     api
-      .postArticle(this.state, this.context.loggedUser)
+      .postArticle(this.state, loggedUser)
       .then((newArticle) => {
         this.props.addArticle(newArticle);
         this.setState({ isCreated: true });
+        navigate(`/articlesby/${loggedUser}`);
       })
       .catch(() => {
-        this.setState((currState) => {
-          const newState = {
-            ...currState,
-            isLoading: false,
-            hasError: true,
-            errorMessage: 'You need to be logged in to do that!!'
-          };
-          return newState;
+        this.setState({
+          isLoading: false,
+          hasError: true,
+          errorMessage: 'You need to be logged in to do that!!'
         });
       });
   };
@@ -81,7 +80,7 @@ class FormArticle extends React.Component {
             Post
           </button>
         </form>
-        {hasError ? <ErrorMessage errorMessage={errorMessage} /> : null}
+        {hasError && <ErrorMessage errorMessage={errorMessage} />}
       </div>
     );
   }

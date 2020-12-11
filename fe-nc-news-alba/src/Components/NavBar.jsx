@@ -126,10 +126,8 @@ class NavBar extends React.Component {
             </form>
           </div>
         )}
-        <p className={loggedUser ? null : 'hideWelcome'}>
-          Welcome {loggedUser}
-        </p>
-        {hasError ? <ErrorMessage errorMessage={errorMessage} /> : null}
+        <p className={!loggedUser && 'hideWelcome'}>Welcome {loggedUser}</p>
+        {hasError && <ErrorMessage errorMessage={errorMessage} />}
       </nav>
     );
   }
