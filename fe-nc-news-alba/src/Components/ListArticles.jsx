@@ -12,7 +12,8 @@ class ListArticles extends React.Component {
     isLoading: true,
     isToggleOn: true,
     hasError: false,
-    errorMessage: ''
+    errorMessage: '',
+    isCreated: false
   };
 
   componentDidMount() {
@@ -33,7 +34,8 @@ class ListArticles extends React.Component {
 
   handleClick = () => {
     this.setState((currState) => ({
-      isToggleOn: !currState.isToggleOn
+      isToggleOn: !currState.isToggleOn,
+      isCreated: false
     }));
   };
 
@@ -67,7 +69,8 @@ class ListArticles extends React.Component {
       const newState = {
         articles: [newArticle, ...currState.articles],
         isLoading: false,
-        isToggleOn: true
+        isToggleOn: true,
+        isCreated: true
       };
       return newState;
     });
@@ -79,8 +82,11 @@ class ListArticles extends React.Component {
       hasError,
       errorMessage,
       isLoading,
-      isToggleOn
+      isToggleOn,
+      isCreated
     } = this.state;
+    const { topic_slug, username } = this.props;
+
     if (isLoading) {
       return <Loading />;
     } else if (hasError) {
@@ -89,8 +95,8 @@ class ListArticles extends React.Component {
       return (
         <div className='ListArticles'>
           <NavBarFilter
-            topic={this.props.topic_slug}
-            author={this.props.username}
+            topic={topic_slug}
+            author={username}
             getArticles={this.getArticles}
           />
           {isToggleOn ? (
@@ -98,15 +104,15 @@ class ListArticles extends React.Component {
               Post article
             </button>
           ) : (
-            <FormArticle
-              addArticle={this.addArticle}
-              loggedUser={this.props.loggedUser}
-            />
+            <FormArticle addArticle={this.addArticle} />
           )}
+          {isCreated ? (
+            <ErrorMessage errorMessage='This article has been successfully post' />
+          ) : null}
           <p className='CountP'>
             Post {articles.length} articles{' '}
-            {this.props.topic_slug || this.props.username ? (
-              <span>by {this.props.topic_slug || this.props.username}</span>
+            {topic_slug || username ? (
+              <span>by {topic_slug || username}</span>
             ) : null}
           </p>
 

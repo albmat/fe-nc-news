@@ -35,6 +35,8 @@ class NavBarFilter extends React.Component {
   };
 
   render() {
+    const { order } = this.state;
+
     return (
       <nav className='NavBarFilter'>
         <select
@@ -49,7 +51,7 @@ class NavBarFilter extends React.Component {
           <option value='votes'>Votes</option>
         </select>
         <button onClick={this.changeOrder}>
-          {this.state.order === 'asc' ? (
+          {order === 'asc' ? (
             <IoMdArrowDropdown size={10} />
           ) : (
             <IoMdArrowDropup size={10} />

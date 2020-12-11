@@ -11,7 +11,9 @@ class ListComments extends React.Component {
     isLoading: true,
     isToggleOn: true,
     hasError: false,
-    errorMessage: ''
+    errorMessage: '',
+    isDeleted: false,
+    isCreated: false
   };
 
   componentDidMount() {
@@ -43,25 +45,41 @@ class ListComments extends React.Component {
       const newState = {
         comments: [newComment, ...currState.comments],
         isLoading: false,
-        isToggleOn: true
+        isToggleOn: true,
+        isCreated: true,
+        isDeleted: false
       };
       return newState;
     });
   };
 
   deleteComment = (id) => {
-    api.deleteComment(id).then(() => {
-      this.setState((currState) => {
-        const newState = {
-          comments: currState.comments.filter(
-            (comment) => comment.comment_id !== id
-          ),
+    api
+      .deleteComment(id)
+      .then(() => {
+        this.setState((currState) => {
+          const newState = {
+            comments: currState.comments.filter(
+              (comment) => comment.comment_id !== id
+            ),
+            isLoading: false,
+            isToggleOn: true,
+            isDeleted: true,
+            isCreated: false
+          };
+          return newState;
+        });
+      })
+      .catch((err) => {
+        const {
+          response: { status, statusText }
+        } = err;
+        this.setState({
           isLoading: false,
-          isToggleOn: true
-        };
-        return newState;
+          hasError: true,
+          errorMessage: `Comment nof found... ${status}!! ${statusText}`
+        });
       });
-    });
   };
 
   render() {
@@ -70,8 +88,11 @@ class ListComments extends React.Component {
       isToggleOn,
       hasError,
       errorMessage,
-      isLoading
+      isLoading,
+      isDeleted,
+      isCreated
     } = this.state;
+    const { article_id } = this.props;
 
     if (isLoading) {
       return <Loading />;
@@ -85,11 +106,14 @@ class ListComments extends React.Component {
               Post comment
             </button>
           ) : (
-            <FormComment
-              id={this.props.article_id}
-              addComment={this.addComment}
-            />
+            <FormComment id={article_id} addComment={this.addComment} />
           )}
+          {isDeleted ? (
+            <ErrorMessage errorMessage='This comment has been successfully removed' />
+          ) : null}
+          {isCreated ? (
+            <ErrorMessage errorMessage='This comment has been successfully post' />
+          ) : null}
           <p className='CountP'>Post {comments.length} comments</p>
           {comments.map((comment) => {
             return (

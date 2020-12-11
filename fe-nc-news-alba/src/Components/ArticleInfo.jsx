@@ -35,9 +35,21 @@ class ArticleInfo extends React.Component {
   }
 
   deleteArticle = (id) => {
-    api.deleteArticle(id).then(() => {
-      this.setState({ isDeleted: true });
-    });
+    api
+      .deleteArticle(id)
+      .then(() => {
+        this.setState({ isDeleted: true });
+      })
+      .catch((err) => {
+        const {
+          response: { status, statusText }
+        } = err;
+        this.setState({
+          isLoading: false,
+          hasError: true,
+          errorMessage: `Article nof found... ${status}!! ${statusText}`
+        });
+      });
   };
 
   render() {

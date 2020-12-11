@@ -24,8 +24,10 @@ class App extends React.Component {
   };
 
   render() {
+    const { loggedUser } = this.state;
+
     return (
-      <UserContext.Provider value={{ loggedUser: this.state.loggedUser }}>
+      <UserContext.Provider value={{ loggedUser: loggedUser }}>
         <div className='App'>
           <NavBar logIn={this.logIn} logOut={this.logOut} />
           <Header />

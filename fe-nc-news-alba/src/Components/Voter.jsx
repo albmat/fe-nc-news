@@ -26,22 +26,19 @@ class Voter extends React.Component {
   };
 
   render() {
-    if (this.state.hasError) {
-      return <ErrorMessage errorMessage={this.state.errorMessage} />;
+    const { hasError, errorMessage, vote_change, hasVoted } = this.state;
+    const { votes } = this.props;
+
+    if (hasError) {
+      return <ErrorMessage errorMessage={errorMessage} />;
     } else {
       return (
         <>
-          <p>{this.props.votes + this.state.vote_change} votes</p>
-          <button
-            onClick={() => this.handleClick(1)}
-            disabled={this.state.hasVoted}
-          >
+          <p>{votes + vote_change} votes</p>
+          <button onClick={() => this.handleClick(1)} disabled={hasVoted}>
             VoteUp!
           </button>
-          <button
-            onClick={() => this.handleClick(-1)}
-            disabled={this.state.hasVoted}
-          >
+          <button onClick={() => this.handleClick(-1)} disabled={hasVoted}>
             VoteDown!
           </button>
         </>

@@ -25,6 +25,7 @@ class FormArticle extends React.Component {
       .postArticle(this.state, this.context.loggedUser)
       .then((newArticle) => {
         this.props.addArticle(newArticle);
+        this.setState({ isCreated: true });
       })
       .catch(() => {
         this.setState((currState) => {

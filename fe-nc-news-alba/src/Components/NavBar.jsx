@@ -26,12 +26,24 @@ class NavBar extends React.Component {
   };
 
   componentDidMount() {
-    api.getAllUsers().then((users) => {
-      this.setState((currState) => {
-        const newState = { ...currState, users: users };
-        return newState;
+    api
+      .getAllUsers()
+      .then((users) => {
+        this.setState((currState) => {
+          const newState = { ...currState, users: users };
+          return newState;
+        });
+      })
+      .catch((err) => {
+        const {
+          response: { status, statusText }
+        } = err;
+        this.setState({
+          isToggleOn: true,
+          hasError: true,
+          errorMessage: `Nah! Try again. ${status}!! ${statusText}`
+        });
       });
-    });
   }
 
   handleClick = () => {
@@ -126,4 +138,3 @@ class NavBar extends React.Component {
 NavBar.contextType = UserContext;
 
 export default withStyles(styles, { withTheme: true })(NavBar);
-// export default NavBar;
