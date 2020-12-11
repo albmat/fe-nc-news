@@ -2,19 +2,9 @@ import React from 'react';
 import * as api from '../api';
 import ErrorMessage from './ErrorMessage';
 import { UserContext } from '../Context/User';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-
-const styles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(2, 'auto'),
-      width: '25px'
-    }
-  }
-}));
 
 class NavBar extends React.Component {
   state = {
@@ -86,36 +76,30 @@ class NavBar extends React.Component {
 
   render() {
     const { hasError, errorMessage, isToggleOn, username } = this.state;
-    const { logOut, classes } = this.props;
+    const { logOut } = this.props;
     const { loggedUser } = this.context;
 
     return (
       <nav className='NavBar'>
         {loggedUser ? (
-          <Button
-            onClick={logOut}
-            size='small'
-            className={classes.button}
-            endIcon={<Icon>send</Icon>}
-          >
-            LogOut
-          </Button>
+          <div className='FormLoginButton'>
+            <Button onClick={logOut} size='small' endIcon={<Icon>send</Icon>}>
+              LogOut
+            </Button>
+          </div>
         ) : isToggleOn ? (
-          <Button
-            onClick={this.handleClick}
-            size='small'
-            className={classes.button}
-            endIcon={<Icon>send</Icon>}
-          >
-            LogIn
-          </Button>
+          <div className='FormLoginButton'>
+            <Button
+              onClick={this.handleClick}
+              size='small'
+              endIcon={<Icon>send</Icon>}
+            >
+              LogIn
+            </Button>
+          </div>
         ) : (
           <div className='FormLoginDiv'>
-            <form
-              className={classes.root}
-              onSubmit={this.handleSubmit}
-              onBlur={this.handleBlur}
-            >
+            <form onSubmit={this.handleSubmit}>
               <TextField
                 className='FormInputLogin'
                 type='text'
@@ -128,16 +112,16 @@ class NavBar extends React.Component {
               />
               <Button
                 size='small'
-                className={classes.button}
                 endIcon={<Icon>send</Icon>}
                 type='submit'
+                onBlur={this.handleBlur}
               >
                 Send
               </Button>
             </form>
           </div>
         )}
-        <p className={!loggedUser && 'hideWelcome'}>Welcome {loggedUser}</p>
+        {loggedUser && <ErrorMessage errorMessage={`Welcome ${loggedUser}`} />}
         {hasError && <ErrorMessage errorMessage={errorMessage} />}
       </nav>
     );
@@ -146,4 +130,4 @@ class NavBar extends React.Component {
 
 NavBar.contextType = UserContext;
 
-export default withStyles(styles, { withTheme: true })(NavBar);
+export default NavBar;

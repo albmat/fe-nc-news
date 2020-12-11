@@ -18,7 +18,12 @@
   justify-content: center;
   border-radius: 2%;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  background-color: aliceblue;
+  background-color: rgba(255, 0, 0, 0.061);
+}
+
+.FormLoginButton {
+  position: absolute;
+  right: 2%;
 }
 
 .AppHeader {
@@ -27,10 +32,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
-
-.hideWelcome {
-  visibility: hidden;
 }
 
 .SpanHeader {
@@ -45,6 +46,10 @@
   padding: 10px 0;
 }
 
+.NavBarFilter {
+  margin: 2%;
+}
+
 .MuiTabs-flexContainer {
   display: flex;
   justify-content: space-evenly;
@@ -57,6 +62,10 @@
   max-width: 400px;
   margin: 5% auto;
   padding: 10px 0;
+}
+
+.Select {
+  width: 100px;
 }
 
 .Link {

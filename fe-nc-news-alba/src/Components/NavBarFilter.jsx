@@ -1,5 +1,10 @@
 import React from 'react';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/all';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 class NavBarFilter extends React.Component {
   state = {
@@ -45,24 +50,33 @@ class NavBarFilter extends React.Component {
 
     return (
       <nav className='NavBarFilter'>
-        <select
-          className='Select'
-          id='sort_by'
-          name='sort_by'
-          onChange={this.changeHandler}
-        >
-          <option value='created_at'>Sort by</option>
-          <option value='created_at'>Date</option>
-          <option value='comment_count'>Comments</option>
-          <option value='votes'>Votes</option>
-        </select>
-        <button onClick={this.changeOrder}>
-          {order === 'asc' ? (
-            <IoMdArrowDropdown size={10} />
-          ) : (
-            <IoMdArrowDropup size={10} />
-          )}
-        </button>
+        <FormControl>
+          <InputLabel id='sort_by' error>
+            Sort by
+          </InputLabel>
+          <Select
+            className='Select'
+            id='sort_by'
+            value={this.state.sort_by}
+            onChange={this.changeHandler}
+            name='sort_by'
+          >
+            <MenuItem value={'created_at'}>Date</MenuItem>
+            <MenuItem value={'comment_count'}>Comments</MenuItem>
+            <MenuItem value={'votes'}>Votes</MenuItem>
+          </Select>
+          <Button
+            onClick={this.changeOrder}
+            size='small'
+            endIcon={
+              order === 'asc' ? (
+                <IoMdArrowDropup size={18} />
+              ) : (
+                <IoMdArrowDropdown size={18} />
+              )
+            }
+          ></Button>
+        </FormControl>
       </nav>
     );
   }

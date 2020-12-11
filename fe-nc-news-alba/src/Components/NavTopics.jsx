@@ -30,6 +30,7 @@ export default function NavTopics() {
         {topics.map((topic) => {
           return (
             <Tab
+              key={topic.slug}
               label={topic.slug}
               to={`/articles/${topic.slug}`}
               component={Link}
