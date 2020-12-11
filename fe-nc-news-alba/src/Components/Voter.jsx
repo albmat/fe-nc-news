@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../api';
 import ErrorMessage from './ErrorMessage';
+import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 
 class Voter extends React.Component {
   state = {
@@ -35,11 +36,19 @@ class Voter extends React.Component {
       return (
         <>
           <p>{votes + vote_change} votes</p>
-          <button onClick={() => this.handleClick(1)} disabled={hasVoted}>
-            VoteUp!
+          <button
+            onClick={() => this.handleClick(1)}
+            disabled={hasVoted}
+            className='ButtonVote'
+          >
+            <FiThumbsUp size={20} />
           </button>
-          <button onClick={() => this.handleClick(-1)} disabled={hasVoted}>
-            VoteDown!
+          <button
+            onClick={() => this.handleClick(-1)}
+            disabled={hasVoted}
+            className='ButtonVote'
+          >
+            <FiThumbsDown size={20} />
           </button>
         </>
       );

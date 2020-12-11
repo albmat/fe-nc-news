@@ -8,6 +8,7 @@ import { Link } from '@reach/router';
 import { UserContext } from '../Context/User';
 import ListComments from '../Components/ListComments';
 import { Router } from '@reach/router';
+import { AiOutlineComment } from 'react-icons/ai';
 
 class ArticleInfo extends React.Component {
   state = {
@@ -73,31 +74,38 @@ class ArticleInfo extends React.Component {
       return <ErrorMessage errorMessage='This article has been removed!!' />;
     } else {
       return (
-        <div className='ArticleInfo'>
-          <h3>{article.title}</h3>
-          <p>{article.body}</p>
-          <p>by {article.author}</p>
-          <p>
-            created at{' '}
-            {moment(article.created_at).format('MMMM Do YYYY, h:mm:ss a')}
-          </p>
-          <Voter
-            place='articles'
-            id={article.article_id}
-            votes={article.votes}
-          />
-          <p>{article.comment_count} comments</p>
-          <Link to={`/article/${article.article_id}/comments`}>
-            <button>All comments</button>
-          </Link>
-          {loggedUser === article.author && (
-            <button
-              className='ButtonDeleteArticle'
-              onClick={() => this.deleteArticle(article.article_id)}
-            >
-              Delete
-            </button>
-          )}
+        <div className='ArticleInfoDiv'>
+          <div className='ArticleInfo'>
+            <h3>{article.title}</h3>
+            <p className='ArticleBody'>{article.body}</p>
+            <div className='ArticleDiv'>
+              <p>by {article.author}</p>
+              <p>
+                created at{' '}
+                {moment(article.created_at).format('MMMM Do YYYY, h:mm:ss a')}
+              </p>
+            </div>
+
+            <Voter
+              place='articles'
+              id={article.article_id}
+              votes={article.votes}
+            />
+            <p>
+              <AiOutlineComment /> {article.comment_count} comments
+            </p>
+            <Link to={`/article/${article.article_id}/comments`}>
+              <button>All comments</button>
+            </Link>
+            {loggedUser === article.author && (
+              <button
+                className='ButtonDeleteArticle'
+                onClick={() => this.deleteArticle(article.article_id)}
+              >
+                Delete
+              </button>
+            )}
+          </div>
           <Router primary={false}>
             <ListComments path='/comments' />
           </Router>

@@ -38,7 +38,7 @@ class FormComment extends React.Component {
       <div className='FormCommentDiv'>
         <form className='FormComment' onSubmit={this.handleSubmit}>
           <textarea
-            className='FormInput'
+            className='FormTextArea'
             type='text'
             id='body'
             name='body'

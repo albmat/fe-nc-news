@@ -5,6 +5,7 @@ import ErrorMessage from './ErrorMessage';
 import Loading from './Loading';
 import NavBarFilter from './NavBarFilter';
 import FormArticle from './FormArticle';
+import Button from '@material-ui/core/Button';
 
 class ListArticles extends React.Component {
   state = {
@@ -97,9 +98,13 @@ class ListArticles extends React.Component {
             getArticles={this.getArticles}
           />
           {isToggleOn ? (
-            <button className='ButtonPost' onClick={this.handleClick}>
+            <Button
+              onClick={this.handleClick}
+              size='medium'
+              className='ButtonPost'
+            >
               Post article
-            </button>
+            </Button>
           ) : (
             <FormArticle addArticle={this.addArticle} />
           )}

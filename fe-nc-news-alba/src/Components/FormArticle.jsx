@@ -3,6 +3,11 @@ import * as api from '../api';
 import ErrorMessage from './ErrorMessage';
 import { UserContext } from '../Context/User';
 import { navigate } from '@reach/router';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 class FormArticle extends React.Component {
   state = {
@@ -40,22 +45,29 @@ class FormArticle extends React.Component {
   };
 
   render() {
-    const { hasError, errorMessage, title, body } = this.state;
+    const { hasError, errorMessage, title, body, topic } = this.state;
     return (
       <div className='FormArticleDiv'>
         <form className='FormArticle' onSubmit={this.handleSubmit}>
-          <select
-            required
-            className='Select'
-            id='topic'
-            name='topic'
-            onChange={this.handleChange}
-          >
-            <option value=''>Topics</option>
-            <option value='coding'>Coding</option>
-            <option value='football'>Football</option>
-            <option value='cooking'>Cooking</option>
-          </select>
+          <FormControl>
+            <InputLabel id='topic'>Topics</InputLabel>
+            <Select
+              className='Select'
+              id='topic'
+              value={topic}
+              name='topic'
+              onChange={this.handleChange}
+              label='Topic'
+              required
+            >
+              <MenuItem value=''>
+                <em>Topics</em>
+              </MenuItem>
+              <MenuItem value={'coding'}>Coding</MenuItem>
+              <MenuItem value={'football'}>Football</MenuItem>
+              <MenuItem value={'cooking'}>Cooking</MenuItem>
+            </Select>
+          </FormControl>
           <input
             className='FormInput'
             type='text'
@@ -67,7 +79,7 @@ class FormArticle extends React.Component {
             onChange={this.handleChange}
           />
           <textarea
-            className='FormInput'
+            className='FormTextArea'
             type='text'
             id='body'
             name='body'
@@ -76,9 +88,14 @@ class FormArticle extends React.Component {
             placeholder='Enter your article here...'
             onChange={this.handleChange}
           ></textarea>
-          <button className='FormButton' type='submit'>
+          <Button
+            className='FormButton'
+            type='submit'
+            variant='outlined'
+            size='small'
+          >
             Post
-          </button>
+          </Button>
         </form>
         {hasError && <ErrorMessage errorMessage={errorMessage} />}
       </div>

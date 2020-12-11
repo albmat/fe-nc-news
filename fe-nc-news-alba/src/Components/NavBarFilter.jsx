@@ -46,7 +46,7 @@ class NavBarFilter extends React.Component {
   };
 
   render() {
-    const { order } = this.state;
+    const { order, sort_by } = this.state;
 
     return (
       <nav className='NavBarFilter'>
@@ -57,7 +57,7 @@ class NavBarFilter extends React.Component {
           <Select
             className='Select'
             id='sort_by'
-            value={this.state.sort_by}
+            value={sort_by}
             onChange={this.changeHandler}
             name='sort_by'
           >
