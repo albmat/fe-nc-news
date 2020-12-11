@@ -79,7 +79,7 @@
 }
 
 .CardArticle {
-  width: 90%;
+  width: 60%;
   margin: 1% auto;
   padding: 1%;
   background-color: rgba(128, 128, 128, 0.15);
@@ -100,12 +100,14 @@
 }
 
 .ArticleInfo {
-  max-width: 90%;
+  max-width: 60%;
   margin: 5% auto;
 }
 
 .ArticleBody {
+  text-indent: 1.5em;
   text-align: justify;
+  line-height: 22px;
 }
 
 .CommentBody {
