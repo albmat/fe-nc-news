@@ -99,7 +99,7 @@ class NavBar extends React.Component {
           </div>
         ) : (
           <div className='FormLoginDiv'>
-            <form onSubmit={this.handleSubmit}>
+            <form className='FormLogin' onSubmit={this.handleSubmit}>
               <TextField
                 className='FormInputLogin'
                 type='text'
@@ -121,7 +121,7 @@ class NavBar extends React.Component {
             </form>
           </div>
         )}
-        {loggedUser && <ErrorMessage errorMessage={`Welcome ${loggedUser}`} />}
+
         {hasError && <ErrorMessage errorMessage={errorMessage} />}
       </nav>
     );
