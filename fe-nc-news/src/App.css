@@ -1,29 +1,41 @@
+/* For mobile phones: */
 .App {
   text-align: center;
 }
 
 .NavBar {
+  background-color: rgba(128, 128, 128, 0.15);
   text-align: right;
-  margin: 20px auto;
+  margin: auto;
+  height: 80px;
 }
 
 .FormLoginDiv {
   position: absolute;
-  right: 1%;
-  width: 220px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
   align-items: center;
+  align-content: center;
   justify-content: center;
-  border-radius: 2%;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  background-color: rgba(128, 128, 128, 0.15);
+  margin: auto;
+}
+
+.FormLogin {
+  height: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .FormLoginButton {
-  position: absolute;
-  right: 2%;
+  height: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.FormInputLogin {
 }
 
 .AppHeader {
@@ -44,6 +56,21 @@
   max-width: 400px;
   margin: 2% auto;
   padding: 10px 0;
+}
+
+.Home {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LinkMain {
+  margin: 0;
+}
+
+.MuiButton-textSizeLarge {
+  font-size: 1.5rem;
 }
 
 .NavBarFilter {
@@ -79,8 +106,8 @@
 }
 
 .CardArticle {
-  width: 60%;
-  margin: 1% auto;
+  width: 100%;
+  margin: 2% auto;
   padding: 1%;
   background-color: rgba(128, 128, 128, 0.15);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -100,7 +127,7 @@
 }
 
 .ArticleInfo {
-  max-width: 60%;
+  max-width: 90%;
   margin: 5% auto;
 }
 
@@ -121,12 +148,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 60%;
 }
 
 .CommentDiv {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 60%;
 }
 
 .Title {
@@ -229,4 +258,42 @@
   display: flex;
   justify-content: center;
   margin: 20%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .CardArticle {
+    width: 60%;
+    margin: 1% auto;
+    padding: 1%;
+    background-color: rgba(128, 128, 128, 0.15);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2%;
+  }
+  .CountP {
+    max-width: 60%;
+    margin: 1% auto;
+    font-style: italic;
+    text-align: left;
+  }
+
+  .ArticleDiv {
+    font-size: 70%;
+  }
+
+  .ArticleInfo {
+    max-width: 60%;
+    margin: 5% auto;
+  }
+  .CardComment {
+    max-width: 60%;
+    margin: 1% auto;
+    background-color: rgba(128, 128, 128, 0.15);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2%;
+    padding: 1%;
+  }
 }
