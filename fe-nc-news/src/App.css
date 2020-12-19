@@ -5,27 +5,19 @@
 
 .NavBar {
   background-color: rgba(128, 128, 128, 0.15);
-  text-align: right;
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-end;
   margin: auto;
-  height: 50px;
 }
 
 .FormLoginDiv {
   display: flex;
-  height: 100%;
-  align-items: center;
-  align-content: center;
-  justify-content: flex-end;
-  margin: auto;
-}
-
-.FormLoginButton {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  align-content: center;
-  justify-content: flex-end;
-  margin: auto;
+  flex-direction: row;
 }
 
 .AppHeader {
@@ -53,14 +45,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.LinkMain {
-  margin: 0;
-}
-
-.MuiButton-textSizeLarge {
-  font-size: 1.5rem;
 }
 
 .NavBarFilter {
@@ -233,7 +217,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 5%;
+  margin: 0;
 }
 
 .TagIcon {
@@ -241,7 +225,7 @@
 }
 
 .ErrorTitle {
-  margin: 15px;
+  margin: 1%;
 }
 
 .LoadingDiv {

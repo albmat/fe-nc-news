@@ -45,6 +45,7 @@ class NavBar extends React.Component {
 
   handleBlur = () => {
     this.setState((currState) => ({
+      username: '',
       isToggleOn: !currState.isToggleOn,
       hasError: false
     }));
@@ -80,50 +81,52 @@ class NavBar extends React.Component {
     const { loggedUser } = this.context;
 
     return (
-      <nav className='NavBar'>
-        {loggedUser ? (
-          <div className='FormLoginButton'>
-            <Button onClick={logOut} size='small' endIcon={<Icon>send</Icon>}>
-              LogOut
-            </Button>
-          </div>
-        ) : isToggleOn ? (
-          <div className='FormLoginButton'>
-            <Button
-              onClick={this.handleClick}
-              size='small'
-              endIcon={<Icon>send</Icon>}
-            >
-              LogIn
-            </Button>
-          </div>
-        ) : (
-          <div className='FormLoginDiv'>
-            <form className='FormLogin' onSubmit={this.handleSubmit}>
-              <TextField
-                className='FormInputLogin'
-                type='text'
-                id='username'
-                name='username'
-                value={username}
-                placeholder='username'
-                required
-                onChange={this.handleChange}
-              />
+      <div>
+        <nav className='NavBar'>
+          {loggedUser ? (
+            <div className='FormLoginButton'>
+              <Button onClick={logOut} size='small' endIcon={<Icon>send</Icon>}>
+                LogOut
+              </Button>
+            </div>
+          ) : isToggleOn ? (
+            <div className='FormLoginButton'>
               <Button
+                onClick={this.handleClick}
                 size='small'
                 endIcon={<Icon>send</Icon>}
-                type='submit'
-                onBlur={this.handleBlur}
               >
-                Send
+                LogIn
               </Button>
-            </form>
-          </div>
-        )}
-
+            </div>
+          ) : (
+            <div className='FormLoginDiv'>
+              <form className='FormLogin' onSubmit={this.handleSubmit}>
+                <TextField
+                  className='FormInputLogin'
+                  type='text'
+                  id='username'
+                  name='username'
+                  value={username}
+                  placeholder='username'
+                  required
+                  onChange={this.handleChange}
+                />
+                <Button
+                  size='small'
+                  endIcon={<Icon>send</Icon>}
+                  type='submit'
+                  onBlur={this.handleBlur}
+                >
+                  Send
+                </Button>
+              </form>
+            </div>
+          )}
+        </nav>
+        {loggedUser && <ErrorMessage errorMessage={`Welcome ${loggedUser}`} />}
         {hasError && <ErrorMessage errorMessage={errorMessage} />}
-      </nav>
+      </div>
     );
   }
 }
