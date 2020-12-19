@@ -1,5 +1,4 @@
 import { Link } from '@reach/router';
-import Button from '@material-ui/core/Button';
 
 const Home = () => {
   return (

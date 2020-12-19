@@ -85,7 +85,7 @@
   padding: 1%;
   background-color: rgba(128, 128, 128, 0.15);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 2%;
+  border-radius: 5px;
 }
 
 .CountP {
@@ -141,7 +141,7 @@
   margin: 1% auto;
   background-color: rgba(128, 128, 128, 0.15);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 2%;
+  border-radius: 5px;
   padding: 1%;
 }
 
@@ -168,8 +168,8 @@
 
 .FormArticleDiv {
   flex-wrap: wrap;
-  width: 90%;
-  margin: 1% auto;
+  width: 100%;
+  margin: 1%;
 }
 
 .FormComment {
@@ -199,6 +199,8 @@
   height: 50px;
   margin: 1% 0;
   font-size: 1em;
+  border: solid 1px grey;
+  border-radius: 5px;
 }
 
 .FormInput {
@@ -206,10 +208,13 @@
   max-width: 100%;
   margin: 1% 0;
   font-size: 1em;
+  border: solid 1px grey;
+  border-radius: 5px;
 }
 
 ::placeholder {
   font-family: 'Roboto';
+  font-style: italic;
 }
 
 .ErrorDiv {
@@ -245,7 +250,7 @@
     padding: 1%;
     background-color: rgba(128, 128, 128, 0.15);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 2%;
+    border-radius: 5px;
   }
   .CountP {
     max-width: 60%;
@@ -267,7 +272,13 @@
     margin: 1% auto;
     background-color: rgba(128, 128, 128, 0.15);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 2%;
+    border-radius: 5px;
     padding: 1%;
+  }
+
+  .FormArticleDiv {
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 1% auto;
   }
 }

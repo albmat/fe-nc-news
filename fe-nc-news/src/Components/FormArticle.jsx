@@ -75,7 +75,7 @@ class FormArticle extends React.Component {
             name='title'
             value={title}
             required
-            placeholder='Title'
+            placeholder='Title...'
             onChange={this.handleChange}
           />
           <textarea
